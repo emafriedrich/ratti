@@ -11,20 +11,21 @@ import { StepLabel } from "@mui/material";
 import "./stepform.css";
 import { useRecoilState } from "recoil";
 import { currentStepAtom } from "../state/atoms/steper";
+import FifthStep from "./FifthStep";
 
 function StepForm() {
   const handleSteps = (step) => {
     switch (step) {
-      case 1:
+      case 0:
         return <FirstStep />;
-      case 2:
+      case 1:
         return <SecondStep />;
-      case 3:
+      case 2:
         return <ThirdStep />;
+      case 3:
+        return <FourStep />;
       case 4:
-        return <FourStep />;
-      case 5:
-        return <FourStep />;
+        return <FifthStep />;
       default:
         throw new Error("Unknown step");
     }

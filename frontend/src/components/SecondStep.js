@@ -85,14 +85,7 @@ const SecondStep = () => {
           justifyContent={"Flex-end"}
           sx={{ mt: 10 }}
         >
-          <Button
-            variant="outlined"
-            color="error"
-            style={{ width: "150px", height: "50px", borderRadius: "10px" }}
-            sx={{ color: "#000000" }}
-          >
-            Guardar{" "}
-          </Button>
+          
          <ProgressButtons/>          
         </Stack>
       </Box>
