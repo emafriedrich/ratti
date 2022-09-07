@@ -19,8 +19,10 @@ const ThirdStep = () => {
   const [ageBuilding, setAgeBuilding] = React.useState("");
   const [numberAgeHidden, setnumberAgeHidden] = React.useState("none");
   const handleAgeBuilding = (e) => {
-    setAgeBuilding(e);
-    if (e === 'oldBuilding') { handleNumberAgeHidden('')}
+    console.log(e)
+    console.log(e.target.value);
+    setAgeBuilding(e.target.value);
+    if (e.target.value === 'oldBuilding') { handleNumberAgeHidden('')}
   };
   const handleNumberAgeHidden = (e) =>{
     setnumberAgeHidden('')
@@ -202,7 +204,7 @@ const ThirdStep = () => {
             </MenuItem>
             <MenuItem value="inconstructionBuilding">En construcción</MenuItem>
           </Select>
-          <Paper sx={{ width: "140px", display:{...numberAgeHidden}}}>
+          <Paper sx={{ width: "140px", display: numberAgeHidden}}>
           <TextField
           
             value={1}
