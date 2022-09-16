@@ -54,9 +54,9 @@ function StepForm() {
           </Step>
         </Stepper>
       </Paper>
-      <Paper elevation={2} sx={{ p: 5, ml: 20, mt: 10, mr: 20 }}>
+      <Paper elevation={2} sx={{ p: 20, ml: 20, mt: 4, mr: 20 }}>
         <Box sx={{ my: 5 }}>
-          <Typography variant="h4" align="center" sx={{ mt: 2 }}>
+          <Typography variant="h4" align="center" >
             Completa el formulario para continuar
           </Typography>
         </Box>

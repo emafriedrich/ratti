@@ -1,9 +1,8 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { FormHelperText } from "@mui/material";
 import { FormControl } from "@mui/material";
 import ProgressButtons from "./button";
 
@@ -25,8 +24,13 @@ const FirstStep = () => {
 
   return (
     <div>
-      <FormControl sx={{ mt: 10, mb: 2, minWidth: 120 }} direction="row">
+      <FormControl sx={{ mt: 6, mb: 2, minWidth: 120 }} direction="row">
+      <Box sx={{ display: "flex", flexDirection: "row", width: "100%" , mb:5 }}>
+        <Typography sx={{width:'53%',fontSize:'20px'}}><b>Tipo de Propiedad</b></Typography>
+        <Typography sx={{width:'40%',fontSize:'20px'}}><b>Subtipo de Propiedad</b></Typography>
+        </Box>
         <Stack direction="row">
+        
           <Box>
             <Select
               select
@@ -41,9 +45,7 @@ const FirstStep = () => {
               </MenuItem>
               <MenuItem value="Edificios">Edificios</MenuItem>
             </Select>
-            <FormHelperText sx={{ textAlign: "center" }}>
-              Titulo de Propiedad
-            </FormHelperText>
+         
           </Box>
           <Box>
             <Select
@@ -60,9 +62,7 @@ const FirstStep = () => {
               </MenuItem>
               <MenuItem value="Edificios">Edificios</MenuItem>
             </Select>
-            <FormHelperText sx={{ textAlign: "center" }}>
-              Subtipo de Propiedad
-            </FormHelperText>
+         
           </Box>
         </Stack>
       </FormControl>

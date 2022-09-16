@@ -2,7 +2,8 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import { FormControlLabel, TextField } from "@mui/material";
 import { IconButton } from "@mui/material";
-import ArrowCircleUpTwoToneIcon from "@mui/icons-material/ArrowCircleUpTwoTone";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import ArrowCircleDownTwoToneIcon from "@mui/icons-material/ArrowCircleDownTwoTone";
 import { Box } from "@mui/material";
 import HomeWorkTwoToneIcon from "@mui/icons-material/HomeWorkTwoTone";
@@ -54,9 +55,7 @@ const ThirdStep = () => {
   const handleChangeAmount = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
-  const [countCharacter,SetCountCharacter] = React.useState(0);
-
-  
+  const [countCharacter, SetCountCharacter] = React.useState(0);
 
   const [checked, setChecked] = React.useState(true);
 
@@ -66,124 +65,179 @@ const ThirdStep = () => {
 
   return (
     <div>
-      <Stack direction="column" spacing={3} sx={{ mb: "50px",padding:'50px',ml:'10%' }}>
+      <Stack
+        direction="column"
+        spacing={3}
+        sx={{ mb: "50px", padding: "50px", ml: "10%" }}
+      >
         <Box style={{ marginTop: "50px", marginBottom: "15px" }}>
           <Typography style={{ fontSize: "24px" }}>
             <b>Características Principales</b>
           </Typography>
         </Box>
         <Box sx={{ width: "50%" }}>
-          <IconButton>
-            <ArrowCircleDownTwoToneIcon></ArrowCircleDownTwoToneIcon>
-          </IconButton>
-
           <TextField
+          className="textField"
             value={0}
             label="ambientes"
             size="small"
-            inputProps={{
+            color="error"
+            InputProps={{
               step: 1,
               min: 0,
-              max: 9,
+              max: 9,            
               type: "number",
+              sx:{padding:'0',textAlign:'center'},
+              inputProps:{style:{textAlign:'center',height:'30px'}},
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
-            sx={{ width: "140px" }}
-            variant="standard"
+            sx={{ width: "140px", mr: 10 ,mt:2}}
+            variant="outlined"
           />
-
-          <IconButton>
-            <ArrowCircleUpTwoToneIcon></ArrowCircleUpTwoToneIcon>
-          </IconButton>
-
-          <IconButton>
-            <ArrowCircleDownTwoToneIcon></ArrowCircleDownTwoToneIcon>
-          </IconButton>
 
           <TextField
             value={0}
-            label="dormitorios"
+            color="error"
+            label="ambientes"
             size="small"
-            inputProps={{
+            className="textField"
+            InputProps={{
               step: 1,
               min: 0,
               max: 9,
               type: "number",
+              inputProps:{style:{textAlign:'center',height:'30px'}},
+              sx:{padding:'0',textAlign:'center'},
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
-            sx={{ width: "140px" }}
-            variant="standard"
+            sx={{ width: "140px",mt:2 }}
+            variant="outlined"
           />
-
-          <IconButton>
-            <ArrowCircleUpTwoToneIcon></ArrowCircleUpTwoToneIcon>
-          </IconButton>
         </Box>
         <Box sx={{ width: "50%" }}>
-          <IconButton>
-            <ArrowCircleDownTwoToneIcon></ArrowCircleDownTwoToneIcon>
-          </IconButton>
-
           <TextField
             value={0}
-            label="dormitorios"
+            color="error"
+            label="ambientes"
             size="small"
-            inputProps={{
+            InputProps={{
               step: 1,
               min: 0,
               max: 9,
               type: "number",
+              sx:{padding:'0',textAlign:'center'},
+              inputProps:{style:{textAlign:'center',height:'30px'}},
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
-            sx={{ width: "140px" }}
-            variant="standard"
+            sx={{ width: "140px", mr: 10,mt:2 }}
+            variant="outlined"
           />
 
-          <IconButton>
-            <ArrowCircleUpTwoToneIcon></ArrowCircleUpTwoToneIcon>
-          </IconButton>
-
-          <IconButton>
-            <ArrowCircleDownTwoToneIcon></ArrowCircleDownTwoToneIcon>
-          </IconButton>
-
-          <TextField
+<TextField
             value={0}
-            label="dormitorios"
+            color="error"
+            label="ambientes"
             size="small"
-            inputProps={{
+            InputProps={{
               step: 1,
               min: 0,
               max: 9,
               type: "number",
+              inputProps:{style:{textAlign:'center',height:'30px'}},
+              sx:{padding:'0',textAlign:'center'},
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
-            sx={{ width: "140px" }}
-            variant="standard"
+            sx={{ width: "140px", mr: 10 ,mt:2}}
+            variant="outlined"
+          
           />
-
-          <IconButton>
-            <ArrowCircleUpTwoToneIcon></ArrowCircleUpTwoToneIcon>
-          </IconButton>
         </Box>
         <Box sx={{ width: "50%" }}>
-          <IconButton>
-            <ArrowCircleDownTwoToneIcon></ArrowCircleDownTwoToneIcon>
-          </IconButton>
+         
 
           <TextField
+          color="error"
             value={0}
-            label="dormitorios"
+            label="ambientes"
             size="small"
-            inputProps={{
+            InputProps={{
               step: 1,
               min: 0,
               max: 9,
+              inputProps:{style:{textAlign:'center',height:'30px'}},
               type: "number",
+              style:{padding:'0'},
+              startAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="start">
+                  <IconButton>
+                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
+                  </IconButton>
+                </InputAdornment>
+              ),
             }}
-            sx={{ width: "140px" }}
-            variant="standard"
+            sx={{ width: "140px", mr: 10,mt:2 }}
+            variant="outlined"
+          
           />
-
-          <IconButton>
-            <ArrowCircleUpTwoToneIcon></ArrowCircleUpTwoToneIcon>
-          </IconButton>
         </Box>
 
         <Box style={{ marginTop: "50px" }}>
@@ -200,7 +254,7 @@ const ThirdStep = () => {
             size="small"
             inputProps={{
               step: 1,
-
+              textAlign: "center",
               type: "number",
             }}
             sx={{ width: "140px", marginRight: "42px" }}
@@ -217,7 +271,7 @@ const ThirdStep = () => {
             size="small"
             inputProps={{
               step: 1,
-
+              textAlign: "center",
               type: "number",
             }}
             sx={{ width: "140px" }}
@@ -330,9 +384,9 @@ const ThirdStep = () => {
           </Typography>
           <TextField
             variant="outlined"
-            sx={{ mt: "20px", width:'28%' }}
+            sx={{ mt: "20px", width: "28%" }}
             color="error"
-            placeholder='Completá el título de tu aviso'
+            placeholder="Completá el título de tu aviso"
           ></TextField>
         </Box>
         <Box>
@@ -340,22 +394,22 @@ const ThirdStep = () => {
           <Typography>
             <b>Descripción</b>
           </Typography>
-          <Box sx={{display:'flex', flexDirection:'row'}}>
-          <TextField
-            id="outlined-multiline-static"
-            multiline
-            rows={4}
-            placeholder='Escribe un mínimo de 150 caracteres'
-            sx={{ mt: "20px", width:'28%' }}
-            color='error'
-            inputProps={{ minLength: 150 }}
-            onChange={e => SetCountCharacter(e.target.value.length)}
-          />
-          <Box sx={{display:'flex',alignItems:'end', ml:'10px'}}>{countCharacter}</Box>
+          <Box sx={{ display: "flex", flexDirection: "row" }}>
+            <TextField
+              id="outlined-multiline-static"
+              multiline
+              rows={4}
+              placeholder="Escribe un mínimo de 150 caracteres"
+              sx={{ mt: "20px", width: "28%" }}
+              color="error"
+              inputProps={{ minLength: 150 }}
+              onChange={(e) => SetCountCharacter(e.target.value.length)}
+            />
+            <Box sx={{ display: "flex", alignItems: "end", ml: "10px" }}>
+              {countCharacter}
+            </Box>
           </Box>
-          
         </Box>
-        
       </Stack>
 
       <ProgressButtons />
