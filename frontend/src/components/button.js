@@ -88,6 +88,15 @@ const ProgressButtons = () => {
               justifyContent={"Flex-end"}
               sx={{ mt: 10 }}
             >
+               <Button
+                onClick={handleBack}
+                variant="outlined"
+                color="error"
+                style={{ width: "150px", height: "50px", borderRadius: "10px" }}
+                sx={{ color: "#000000" }}
+              >
+                Atrás{" "}
+              </Button>
               <Button
 
                 variant="contained"

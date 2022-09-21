@@ -37,7 +37,7 @@ console.log(grupedFeatures);
 
 const FifthStep = () => {
   const [expanded, setExpanded] = React.useState(false);
-  const [open, setOpen] = React.useState(false);
+
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -51,6 +51,7 @@ const FifthStep = () => {
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
           color="error"
+          
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
@@ -69,7 +70,7 @@ const FifthStep = () => {
               <FormControlLabel
 
                 value="end"
-                control={<Checkbox color="error" />}
+                control={<Checkbox color="error" sx={{marginRight:'20px'}} />}
                 label={item}
                 labelPlacement="end"
                 sx={{ mt: "35px",width:'30%' }}
@@ -82,6 +83,7 @@ const FifthStep = () => {
   };
 
   return (
+    <Box>
     <Stack
       direction="column"
       spacing={3}
@@ -295,10 +297,14 @@ const FifthStep = () => {
           type='number'
         ></TextField>
         </Box>
-
-        <ProgressButtons />
+ 
       </Box>
+      
     </Stack>
+    <Stack sx={{justifyContent:'end'}}>
+        <ProgressButtons />
+        </Stack>
+    </Box>
   );
 };
 

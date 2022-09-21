@@ -1,0 +1,37 @@
+.box-image {
+    height:200px;
+    width:65%;
+    border:2px dotted;
+    border-color: #EA1A1A ;
+    border-radius: 10px;
+    margin-top: 40px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px;
+    cursor: pointer;
+}
+.advise-style{
+    height:200px;
+    width:25%;
+    margin-top: 40px;
+    padding: 20px;
+
+}
+.box-image_2{
+    height:200px;
+    width:57%;
+    border:2px dotted;
+    border-color: #EA1A1A ;
+    border-radius: 10px;
+    margin-top: 40px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px;
+    cursor: pointer;
+}
