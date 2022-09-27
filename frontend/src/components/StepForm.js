@@ -8,10 +8,17 @@ import Paper from "@mui/material/Paper";
 import SecondStep from "./SecondStep";
 import FourStep from "./FourStep";
 import { StepLabel } from "@mui/material";
-import "./stepform.css";
+
 import { useRecoilState } from "recoil";
 import { currentStepAtom } from "../state/atoms/steper";
 import FifthStep from "./FifthStep";
+import { useEffect } from "react";
+import { getFeatures } from "../api/features";
+import { featuresAtom } from "../state/atoms/features";
+import { getExtras } from "../api/extras";
+import { extrasAtom } from "../state/atoms/extras";
+
+import "./stepform.css";
 
 function StepForm() {
   const handleSteps = (step) => {
@@ -31,7 +38,16 @@ function StepForm() {
     }
   };
 
-  const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
+  const [currentStep] = useRecoilState(currentStepAtom);
+
+  const [, setFeatures] = useRecoilState(featuresAtom);
+
+  const [, setExtras] = useRecoilState(extrasAtom);
+
+  useEffect(() => {
+    getFeatures().then(features => setFeatures(features));
+    getExtras().then(extras => setExtras(extras))
+  }, []);
 
   return (
     <>

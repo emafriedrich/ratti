@@ -1,4 +1,3 @@
-
 import StepForm from "./components/StepForm";
 
 function App() {

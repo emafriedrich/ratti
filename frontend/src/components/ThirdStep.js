@@ -2,9 +2,6 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import { FormControlLabel, TextField } from "@mui/material";
 import { IconButton } from "@mui/material";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import ArrowCircleDownTwoToneIcon from "@mui/icons-material/ArrowCircleDownTwoTone";
 import { Box } from "@mui/material";
 import HomeWorkTwoToneIcon from "@mui/icons-material/HomeWorkTwoTone";
 import WallpaperTwoToneIcon from "@mui/icons-material/WallpaperTwoTone";
@@ -18,22 +15,32 @@ import FormControl from "@mui/material/FormControl";
 import Input from "@mui/material/Input";
 import Checkbox from "@mui/material/Checkbox";
 import "./ThirdStep.css";
+import { useRecoilState } from "recoil";
+import { featuresAtom } from "../state/atoms/features";
+import NumberFeature from "./third-step/number-input";
+import SelectInput from "./third-step/select-input";
 
 const ThirdStep = () => {
   const [ageBuilding, setAgeBuilding] = React.useState("");
   const [numberAgeHidden, setnumberAgeHidden] = React.useState("none");
   const handleAgeBuilding = (e) => {
+    console.log('entra')
     setAgeBuilding(e.target.value);
-    if (e.target.value === "oldBuilding") {
+    if (e.target.value === "Años de antiguedad") {
       handleNumberAgeHidden("");
-    }
-    if (e.target.value !== "oldBuilding") {
+    } else {
       setnumberAgeHidden("none");
     }
   };
   const handleNumberAgeHidden = (e) => {
     setnumberAgeHidden("flex");
   };
+
+  const featureComponents = {
+    'number': (feature) => <NumberFeature name={feature.name} />,
+    'select': (feature, fg) => <SelectInput name={fg.title} feature={feature} handleAgeBuilding={handleAgeBuilding}></SelectInput>
+  };
+
   const currencies = [
     {
       value: "u$s",
@@ -63,6 +70,8 @@ const ThirdStep = () => {
     setChecked(event.target.checked);
   };
 
+  const [featureGroups] = useRecoilState(featuresAtom);
+
   return (
     <div>
       <Stack
@@ -70,278 +79,49 @@ const ThirdStep = () => {
         spacing={3}
         sx={{ mb: "50px", padding: "50px", ml: "10%" }}
       >
-        <Box style={{ marginTop: "50px", marginBottom: "15px" }}>
-          <Typography style={{ fontSize: "24px" }}>
-            <b>Características Principales</b>
-          </Typography>
-        </Box>
-        <Box sx={{ width: "50%" }}>
-          <TextField
-          className="textField"
-            value={0}
-            label="ambientes"
-            size="small"
-            color="error"
-            InputProps={{
-              step: 1,
-              min: 0,
-              max: 9,            
-              type: "number",
-              sx:{padding:'0',textAlign:'center'},
-              inputProps:{style:{textAlign:'center',height:'30px'}},
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ width: "140px", mr: 10 ,mt:2}}
-            variant="outlined"
-          />
-
-          <TextField
-            value={0}
-            color="error"
-            label="ambientes"
-            size="small"
-            className="textField"
-            InputProps={{
-              step: 1,
-              min: 0,
-              max: 9,
-              type: "number",
-              inputProps:{style:{textAlign:'center',height:'30px'}},
-              sx:{padding:'0',textAlign:'center'},
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ width: "140px",mt:2 }}
-            variant="outlined"
-          />
-        </Box>
-        <Box sx={{ width: "50%" }}>
-          <TextField
-            value={0}
-            color="error"
-            label="ambientes"
-            size="small"
-            InputProps={{
-              step: 1,
-              min: 0,
-              max: 9,
-              type: "number",
-              sx:{padding:'0',textAlign:'center'},
-              inputProps:{style:{textAlign:'center',height:'30px'}},
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ width: "140px", mr: 10,mt:2 }}
-            variant="outlined"
-          />
-
-<TextField
-            value={0}
-            color="error"
-            label="ambientes"
-            size="small"
-            InputProps={{
-              step: 1,
-              min: 0,
-              max: 9,
-              type: "number",
-              inputProps:{style:{textAlign:'center',height:'30px'}},
-              sx:{padding:'0',textAlign:'center'},
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ width: "140px", mr: 10 ,mt:2}}
-            variant="outlined"
-          
-          />
-        </Box>
-        <Box sx={{ width: "50%" }}>
-         
-
-          <TextField
-          color="error"
-            value={0}
-            label="ambientes"
-            size="small"
-            InputProps={{
-              step: 1,
-              min: 0,
-              max: 9,
-              inputProps:{style:{textAlign:'center',height:'30px'}},
-              type: "number",
-              style:{padding:'0'},
-              startAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <RemoveCircleOutlineIcon></RemoveCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-              endAdornment: (
-                <InputAdornment position="start">
-                  <IconButton>
-                    <AddCircleOutlineIcon></AddCircleOutlineIcon>{" "}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            sx={{ width: "140px", mr: 10,mt:2 }}
-            variant="outlined"
-          
-          />
-        </Box>
-
-        <Box style={{ marginTop: "50px" }}>
-          <bold style={{ fontSize: "24px" }}>
-            <b>Superficies</b>
-          </bold>
-        </Box>
-        <Box sx={{ width: "50%" }}>
-          <IconButton>
-            <HomeWorkTwoToneIcon></HomeWorkTwoToneIcon>
-          </IconButton>
-          <TextField
-            label="Superficie Cubierta"
-            size="small"
-            inputProps={{
-              step: 1,
-              textAlign: "center",
-              type: "number",
-            }}
-            sx={{ width: "140px", marginRight: "42px" }}
-            variant="standard"
-            placeholder="m2"
-            multiline
-          />
-
-          <IconButton>
-            <WallpaperTwoToneIcon></WallpaperTwoToneIcon>
-          </IconButton>
-          <TextField
-            label="Superficie Total"
-            size="small"
-            inputProps={{
-              step: 1,
-              textAlign: "center",
-              type: "number",
-            }}
-            sx={{ width: "140px" }}
-            variant="standard"
-            placeholder="m2"
-          />
-        </Box>
-        <Box style={{ marginTop: "50px" }}>
-          <Typography style={{ fontSize: "24px", display: "block" }}>
-            <b>Antigüedad</b>
-          </Typography>
-          <Box style={{ display: "flex", flexDirection: "row" }}>
-            <Select
-              select
-              sx={{ width: "200px", mt: 4, borderRadius: "10px" }}
-              color="error"
-              onChange={handleAgeBuilding}
-            >
-              <MenuItem value=""></MenuItem>
-              <MenuItem value="newbuilding" sx={{ textAlign: "center" }}>
-                A estrenar
-              </MenuItem>
-              <MenuItem value="oldBuilding" sx={{ textAlign: "center" }}>
-                Años de Antigüedad
-              </MenuItem>
-              <MenuItem value="inconstructionBuilding">
-                En construcción
-              </MenuItem>
-            </Select>
-            <Box
-              sx={{
-                width: "170px",
-                display: numberAgeHidden,
-                mt: "35px",
-                ml: "35px",
-              }}
-            >
-              <TextField
-                color="error"
-                size="large"
-                inputProps={{
-                  type: "number",
-                }}
-                variant="outlined"
-                sx={{ width: "170px" }}
-              />
+        {featureGroups.map(fg => {
+          return <>
+            <Box style={{ marginTop: "50px", marginBottom: "15px" }}>
+              <Typography style={{ fontSize: "24px" }}>
+                <b>{fg.title}</b>
+              </Typography>
             </Box>
-          </Box>
-        </Box>
+            {
+              fg.features.map(feature => {
+                return <Box sx={{ width: "50%" }}>
+                  {
+                    featureComponents[fg.featureValueType](feature, fg)
+                  }
+                  {
+                    fg.featureValueType === 'select' && <Box
+                      sx={{
+                        width: "170px",
+                        display: numberAgeHidden,
+                        mt: "35px",
+                        ml: "35px",
+                      }}
+                    >
+                      <TextField
+                        color="error"
+                        size="large"
+                        inputProps={{
+                          type: "number",
+                        }}
+                        variant="outlined"
+                        sx={{ width: "170px" }}
+                      />
+                    </Box>
+                  }
+                </Box>
+              })
+            }
+          </>
+        })}
         <Box style={{ marginTop: "50px" }}>
           <Typography style={{ fontSize: "24px", display: "block" }}>
             <b>Precio</b>
           </Typography>
           <Box style={{ display: "flex", flexDirection: "row" }}>
-            <TextField
-              id="standard-select-currency"
-              select
-              label="Selecciona la moneda"
-              value={currency}
-              onChange={handleChange}
-              color="error"
-              variant="standard"
-              sx={{ mt: "35px", width: "200px" }}
-            >
-              {currencies.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
             <FormControl
               sx={{ mt: "35px", width: "170px", ml: "35px" }}
               variant="standard"
@@ -354,7 +134,21 @@ const ThirdStep = () => {
                 id="standard-adornment-amount"
                 onChange={handleChangeAmount("amount")}
                 startAdornment={
-                  <InputAdornment position="start">{currency}</InputAdornment>
+                  <TextField
+                    id="standard-select-currency"
+                    select
+                    value={currency}
+                    onChange={handleChange}
+                    color="error"
+                    variant="standard"
+                    
+                  >
+                    {currencies.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.value + '  '}
+                      </MenuItem>
+                    ))}
+                  </TextField>
                 }
               />
             </FormControl>
@@ -406,7 +200,7 @@ const ThirdStep = () => {
               onChange={(e) => SetCountCharacter(e.target.value.length)}
             />
             <Box sx={{ display: "flex", alignItems: "end", ml: "10px" }}>
-              {countCharacter}
+              <span style={{ color: countCharacter >= 150 ? '' : 'red' }}>{countCharacter} / 150</span>
             </Box>
           </Box>
         </Box>

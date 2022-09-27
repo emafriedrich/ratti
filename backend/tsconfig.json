@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2020",
+    "outDir": ".build",
+    "sourceMap": true,
+    "rootDir": "./",
+    "lib": ["es2020"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+  },
+  "exclude": ["node_modules"]
+}
