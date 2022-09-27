@@ -44,7 +44,7 @@ export default class ExtrasRepository {
     } else {
       const [result] = await connection.promise().query(`
       INSERT INTO extra_groups(title, description, type)
-        VALUES(?, ?);
+        VALUES(?, ?, ?);
     `, values);
       dto.id = (result as OkPacket).insertId;
     }
