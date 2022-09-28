@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
 import ProgressButtons from "./button";
-import { Button, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import { Box } from "@mui/system";
 import "./fourstep.css";

@@ -1,3 +1,4 @@
+import SearchPlace from "./components/search-place";
 import StepForm from "./components/StepForm";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 
       <frameElement>
         <StepForm />
+        <SearchPlace></SearchPlace>
       </frameElement>
     </div>
   );
