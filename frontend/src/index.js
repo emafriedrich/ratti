@@ -7,24 +7,21 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import FirstStep from "./components/FirstStep";
 import SecondStep from "./components/SecondStep";
 import ThirdStep from "./components/ThirdStep";
-import {RecoilRoot} from 'recoil';
+import { RecoilRoot } from 'recoil';
 import FourStep from "./components/FourStep";
 import FifthStep from "./components/FifthStep";
+import SearchPlace from './components/search-place';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-    <Routes>
-      <Route path="/Tipo" element={<FirstStep />} />
-      <Route path="/Ubicacion" element={<SecondStep />} />
-      <Route path="/Caracteristicas" element={<ThirdStep />} />
-      <Route path="/Multimedia" element={<FourStep  />} />
-      <Route path="/Amenities" element={<FifthStep />} />
-    </Routes>
-    </BrowserRouter>
     <RecoilRoot>
-    <App />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/new-post" element={<App />} />
+          <Route path="/" element={<SearchPlace/>}></Route>
+        </Routes>
+      </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>
 );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
 
@@ -9,8 +9,6 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
-  FormLabel,
-  InputLabel,
   MenuItem,
   Radio,
   RadioGroup,
@@ -29,85 +27,33 @@ const SearchPlace = () => {
   const handleChangeTipeProperty = (event) => {
     setProperty(event.target.value);
   };
+  const [propertyType, setPropertyType] = useState('all');
+
   return (
-    <Box >
-      <FormControl sx={{ display: "flex", flexDirection: "row" ,marginTop:'60px' }}>
+    <Box style={{ marginLeft: '10%', width: "80%" }} >
+      <FormControl sx={{ display: "flex", flexDirection: "row", marginTop: '60px', alignItems: 'center' }}>
         <TextField
           onChange={handleChangeUbication}
-          placeholder="Buscar por ciudad o barrio"
+          placeholder="Nombre de la propiedad o lote"
           value={ubication}
           color="error"
-          sx={{marginLeft:'10%'}}
+          sx={{ width: '30%' }}
         ></TextField>
 
         <Select
-          labelId="demo-select-small"
-          id="demo-select-small"
+          select
+          sx={{ width: "200px", marginLeft: '1%', borderRadius: "10px" }}
           color="error"
-          label="Age"
-          sx={{width:'10%',marginRight:'20px',marginLeft:'20px'}}
+          value={propertyType}
+          onChange={ (event) => setPropertyType(event.target.value)}
         >
-          <MenuItem value=""></MenuItem>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="controlled-radio-buttons-group"
-            color="error"
-          >
-            <FormControlLabel
-              value="alquilar"
-              control={<Radio />}
-              label="Alquilar"
-            />
-            <FormControlLabel
-              value="comprar"
-              control={<Radio />}
-              label="Comprar"
-            />
-            <FormControlLabel
-              value="temporal"
-              control={<Radio />}
-              label="Temporal"
-            />
-            <FormControlLabel
-              value="emprendimientos"
-              control={<Radio />}
-              label="Emprendimientos"
-            />
-          </RadioGroup>
+          <MenuItem value="all">Todos</MenuItem>
+          <MenuItem value="department" >Departamento</MenuItem>
+          <MenuItem value="lote" >Lote</MenuItem>
         </Select>
-        <Select
-          labelId="demo-select-small"
-          id="demo-select-small"
-          color="error"
-          label="Age"
-          sx={{width:'10%'}}
-        >
-          <FormGroup>
-            <Box sx={{ margin: "10px", fontSize: "20px", fontWeight: "500" }}>
-              <bold>Titulo de Propiedad</bold>
-            </Box>
-            <FormControlLabel
-              control={<Checkbox color="error" defaultChecked />}
-              label="Departamento"
-              
-            />
-            <FormControlLabel
-              control={<Checkbox color="error" />}
-              label="Terreno"
-            />
-            <Divider />
-            <Box>
-              <Button
-                variant="contained"
-                color="error"
-                sx={{ width: "100px", height: "30px" }}
-              ></Button>
-              <Button variant="contained" color="error"></Button>
-            </Box>
-          </FormGroup>
-        </Select>
+        <span style={{ marginLeft: 'auto' }}> 3 propiedades encontradas </span>
       </FormControl>
-      <Propertylist/>
+      <Propertylist />
     </Box>
   );
 };
