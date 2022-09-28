@@ -77,7 +77,7 @@ const ThirdStep = () => {
       <Stack
         direction="column"
         spacing={3}
-        sx={{ mb: "50px", padding: "50px", ml: "10%" }}
+        sx={{ mb: "50px", padding: "50px", ml: "10%",width:'50%' }}
       >
         {featureGroups.map(fg => {
           return <>
@@ -86,9 +86,10 @@ const ThirdStep = () => {
                 <b>{fg.title}</b>
               </Typography>
             </Box>
+            <Box sx={{display:'flex', flexDirection:'row',flexWrap:'wrap'}}>
             {
               fg.features.map(feature => {
-                return <Box sx={{ width: "50%" }}>
+                return <Box sx={{ width: "50%",marginTop:'20px' }}>
                   {
                     featureComponents[fg.featureValueType](feature, fg)
                   }
@@ -113,8 +114,10 @@ const ThirdStep = () => {
                     </Box>
                   }
                 </Box>
+                
               })
             }
+            </Box>
           </>
         })}
         <Box style={{ marginTop: "50px" }}>
@@ -164,7 +167,12 @@ const ThirdStep = () => {
             sx={{ mt: "35px" }}
           />
         </Box>
-        <Box>
+        
+      </Stack>
+      <Stack direction="column"
+        spacing={3}
+        sx={{ mb: "50px", padding: "50px", ml: "10%" }}>
+<Box>
           <Typography sx={{ fontSize: "24px", display: "block", mt: "35px" }}>
             <b>Describe la propiedad</b>
           </Typography>
