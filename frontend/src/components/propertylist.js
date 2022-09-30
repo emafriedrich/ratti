@@ -1,4 +1,4 @@
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Button, Divider, Paper, Typography } from "@mui/material";
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 
@@ -9,13 +9,13 @@ const Propertylist = () => {
     >
       <Box
         sx={{
-          height: "200px",
+          height: "160px",
           borderRadius: "20px",
-          border: "2px solid red",
+          border: "1.5px solid #A10404",
           marginTop: "50px",
           display: "flex",
           flexDirection: "row",
-
+          padding: "20px",
           width: "80%",
         }}
       >
@@ -26,39 +26,39 @@ const Propertylist = () => {
           <img
             src="https://fakeimg.pl/300/"
             alt="item"
-            style={{ height: "200px", borderRadius: "20px" }}
+            style={{ height: "150px", borderRadius: "20px" }}
           ></img>
         </Box>
         <Box sx={{ height: "80px", marginRight: "50px", marginLeft: "5%" }}>
-          <Box sx={{ marginTop: "10px" }}>
+          <Box >
             <span
               fontWeight={500}
-              style={{ fontSize: "15px", color: "#8A8181" }}
+              style={{ fontSize: "12px", color: "#8A8181" }}
             >
               Departamento
             </span>
           </Box>
-          <Box sx={{ marginTop: "40px" }}>
-            <span style={{ fontSize: "20px" }}>
+          <Box sx={{ marginTop: "10px" }}>
+            <span style={{ fontSize: "15px" }}>
               Departamento grande en Posadas
             </span>
           </Box>
           <Box sx={{ marginTop: "24px" }}>
             <span
               fontWeight={500}
-              style={{ fontSize: "15px", color: "#8A8181" }}
+              style={{ fontSize: "12px", color: "#8A8181" }}
             >
               Leandro N. Alem
             </span>
           </Box>
-          <Box sx={{ marginTop: "24px" }}>
+          <Box sx={{ marginTop: "14px" }}>
             <span
               fontWeight={500}
-              style={{ fontSize: "15px", color: "#8A8181" }}
+              style={{ fontSize: "12px", color: "#8A8181" }}
             >
               Venta
             </span>
-            <span style={{ fontSize: "20px", marginLeft: "30px" }}>
+            <span style={{ fontSize: "15px", marginLeft: "25px" }}>
               USD 200000
             </span>
           </Box>
@@ -66,72 +66,147 @@ const Propertylist = () => {
           <Box></Box>
         </Box>
         <Box sx={{ height: "80px", display: "flex", flexDirection: "row" }}>
-          <Box>
-            <Box>
-              <span fontWeight={500} style={{ fontSize: "20px" }}>
-                Id
-              </span>
-            </Box>
-            <Box>
-              <span style={{ color: "#8A8181", fontSize: "15px" }}>546123</span>
-            </Box>
-          </Box>
+          <Box></Box>
         </Box>
         <Divider orientation="vertical" light flexItem sx={{ width: "10px" }} />
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            width: "40%",
-            height: "120px",
-            flexWrap:'wrap'
+            flexDirection: "column",
+            width: "80%",
+            padding: "10px",
+           
           }}
         >
           <Box
             sx={{
-              height: "100px",
-              width: "20%",
-              border: "1px solid #676161",
-              marginLeft: "40px",
-              borderRadius: "15px",
-              textAlign: "center",
-              lineHeight: "45px",
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              height: "120px",
+              
             }}
           >
-            <span>Visualizaciones</span>
-            <Box sx={{ marginTop: "3px", fontSize: "25px" }}>45</Box>
+            <Box
+              sx={{
+                height: "90px",
+                width: "40%",
+                border: "1px solid #676161",
+                marginLeft: "40px",
+                borderRadius: "15px",
+                textAlign: "center",
+                lineHeight: "45px",
+              }}
+            >
+              <span>Visualizaciones</span>
+              <Box sx={{ marginTop: "3px", fontSize: "25px" }}>45</Box>
+            </Box>
+            <Box
+              sx={{
+                height: "90px",
+                width: "40%",
+                border: "1px solid #676161",
+                marginLeft: "40px",
+                borderRadius: "15px",
+                textAlign: "center",
+                lineHeight: "45px",
+              }}
+            >
+              <span>Exposición</span>
+              <Box sx={{ marginTop: "3px", fontSize: "25px" }}>12</Box>
+            </Box>
+            <Box
+              sx={{
+                height: "90px",
+                width: "40%",
+                border: "1px solid #676161",
+                marginLeft: "40px",
+                borderRadius: "15px",
+                textAlign: "center",
+                lineHeight: "45px",
+              }}
+            >
+              <span>Interesados</span>
+              <Box sx={{ marginTop: "3px", fontSize: "25px" }}>20</Box>
+            </Box>
           </Box>
           <Box
             sx={{
-              height: "100px",
-              width: "20%",
-              border: "1px solid #676161",
-              marginLeft: "40px",
-              borderRadius: "15px",
-              textAlign: "center",
-              lineHeight: "45px",
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              height: "120px",
             }}
           >
-            <span>Exposición</span>
-            <Box sx={{ marginTop: "3px", fontSize: "25px" }}>12</Box>
+            <Box
+              sx={{
+                height: "50px",
+                width: "58%",
+                marginTop: "15px",
+                marginLeft: "40px",
+                borderRadius: "15px",
+                textAlign: "center",
+                lineHeight: "45px",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "12px",
+                  color: "#8A8181",
+                  marginRight: "15px",
+                }}
+              >
+                Id
+              </span>
+              <span style={{ fontWeight: "500", fontSize: "15px" }}>
+                456451
+              </span>
+            </Box>
+            <Box
+              sx={{
+                height: "50px",
+                width: "58%",
+                marginTop: "15px",
+                marginLeft: "40px",
+                borderRadius: "15px",
+                textAlign: "center",
+                lineHeight: "45px",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "15px",
+                  color: "#8A8181",
+                  marginRight: "20px",
+                }}
+              >
+                Creado el
+              </span>
+              <span style={{ fontWeight: "500", fontSize: "15px" }}>
+                14/09/2022
+              </span>
+            </Box>
+            <Box
+              sx={{
+                height: "50px",
+                width: "58%",
+                marginTop: "15px",
+                marginLeft: "40px",
+                borderRadius: "15px",
+                textAlign: "center",
+                lineHeight: "45px",
+              }}
+            >
+              <Button
+                variant="contained"
+                color="error"
+                sx={{ borderRadius: "10px" }}
+              >
+                Me interesa
+              </Button>
+            </Box>
           </Box>
-          <Box
-            sx={{
-              height: "100px",
-              width: "20%",
-              border: "1px solid #676161",
-              marginLeft: "40px",
-              borderRadius: "15px",
-              textAlign: "center",
-              lineHeight: "45px",
-            }}
-          >
-            <span>Interesados</span>
-            <Box sx={{ marginTop: "3px", fontSize: "25px" }}>20</Box>
-          </Box>
-          
         </Box>
-       
       </Box>
     </div>
   );
