@@ -1,6 +1,8 @@
 import { Box, Button, Divider, Paper, Typography } from "@mui/material";
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const Propertylist = () => {
   return (
@@ -141,11 +143,11 @@ const Propertylist = () => {
             <Box
               sx={{
                 height: "50px",
-                width: "58%",
-                marginTop: "15px",
+                width: "12%",
+                marginTop: "30px",
                 marginLeft: "40px",
                 borderRadius: "15px",
-                textAlign: "center",
+                
                 lineHeight: "45px",
               }}
             >
@@ -156,20 +158,21 @@ const Propertylist = () => {
                   marginRight: "15px",
                 }}
               >
-                Id
+                ID
               </span>
               <span style={{ fontWeight: "500", fontSize: "15px" }}>
                 456451
               </span>
             </Box>
+            
             <Box
               sx={{
                 height: "50px",
                 width: "58%",
-                marginTop: "15px",
+                marginTop: "30px",
                 marginLeft: "40px",
                 borderRadius: "15px",
-                textAlign: "center",
+                
                 lineHeight: "45px",
               }}
             >
@@ -190,20 +193,14 @@ const Propertylist = () => {
               sx={{
                 height: "50px",
                 width: "58%",
-                marginTop: "15px",
+                marginTop: "38px",
                 marginLeft: "40px",
                 borderRadius: "15px",
-                textAlign: "center",
-                lineHeight: "45px",
+                textAlign:'end'
               }}
             >
-              <Button
-                variant="contained"
-                color="error"
-                sx={{ borderRadius: "10px" }}
-              >
-                Me interesa
-              </Button>
+              <EditIcon fontSize="large" color='error'/>
+              <DeleteForeverIcon fontSize="large"color='error'/>
             </Box>
           </Box>
         </Box>
