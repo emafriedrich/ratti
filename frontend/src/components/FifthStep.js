@@ -89,13 +89,7 @@ const FifthStep = () => {
         spacing={3}
         sx={{ mb: "50px", padding: "50px", ml: "10%", width: "60%" }}
       >
-        <Typography
-          sx={{ fontSize: "24px", display: "block", mt: "35px", mb: "20px" }}
-        >
-          <b>
-            Estos campos son opcionales y mejoran el posicionamiento del anuncio
-          </b>
-        </Typography>
+        
         <Typography sx={{ mt: "24px" }}>
           Buscá y agregá características.
         </Typography>
