@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Divider from "@mui/material/Divider";
+import CostumerPropertyOffer from "./costumerPropertyOffer";
 
 import {
   Box,
@@ -54,6 +55,7 @@ const SearchPlace = () => {
         <span style={{ marginLeft: 'auto' }}> 3 propiedades encontradas </span>
       </FormControl>
       <Propertylist />
+    
     </Box>
   );
 };

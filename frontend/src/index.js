@@ -11,19 +11,24 @@ import { RecoilRoot } from 'recoil';
 import FourStep from "./components/FourStep";
 import FifthStep from "./components/FifthStep";
 import SearchPlace from './components/search-place';
+import CostumerPropertyOffer from "./components/costumerPropertyOffer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  <div style={{  marginLeft: '7.5%',
+    marginRight:' 7.5%'}}>
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
           <Route path="/new-post" element={<App />} />
           <Route path="/" element={<SearchPlace/>}></Route>
+          <Route path="/post/:id" element={<CostumerPropertyOffer/>}></Route>
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
   </React.StrictMode>
+  </div>
 );
 
 // If you want to start measuring performance in your app, pass a function

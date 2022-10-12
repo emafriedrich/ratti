@@ -192,12 +192,12 @@ const Propertylist = () => {
               <Box
                 sx={{
                   height: "50px",
-                  width: "58%",
-                  marginTop: "30px",
+                  width: "100%",
+                  marginTop: '42px',
                   marginLeft: "40px",
                   borderRadius: "15px",
 
-                  lineHeight: "45px",
+                  lineHeight: "20px",
                 }}
               >
                 <span
