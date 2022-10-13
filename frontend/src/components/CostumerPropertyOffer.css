@@ -143,8 +143,9 @@
   }
   .contact-sticky{
     width: 90%  !important;
-    
+    height: 100%!important;
     margin-left: 0 !important;
+    padding: 30px!important;
   }
   .offer-data{
     width: 95% !important;

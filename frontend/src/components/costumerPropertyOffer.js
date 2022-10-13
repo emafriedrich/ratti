@@ -176,6 +176,7 @@ const CostumerPropertyOffer = () => {
                   lineHeight: "25px",
                   textAlign: "left",
                   height: "auto",
+                  fontSize:'18.5px'
                 }}
               >
                 <span>
@@ -339,8 +340,8 @@ const CostumerPropertyOffer = () => {
               marginTop: "60px",
               marginBottom: "40px",
               width: "30%",
-              height: "80vh",
-              padding: "15px",
+              height: "100%",
+              padding: "30px",
               display: "flex",
               flexDirection: "column",
             }}
