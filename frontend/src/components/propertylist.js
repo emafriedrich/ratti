@@ -17,13 +17,13 @@ const Propertylist = () => {
         flexDirection: "column",
       }}
     >
-      <Box sx={{width: "90%"}}>
+      <Box sx={{ width: "90%" }}>
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Button
             variant="contained"
             color="error"
             sx={{ borderRadius: "10px" }}
-            onClick={() =>  navigate("/new-post")}
+            onClick={() => navigate("/new-post")}
           >
             Nueva Publicación
           </Button>
@@ -37,7 +37,6 @@ const Propertylist = () => {
             display: "flex",
             flexDirection: "row",
             padding: "20px",
-            
           }}
         >
           <Box
@@ -192,8 +191,8 @@ const Propertylist = () => {
               <Box
                 sx={{
                   height: "50px",
-                  width: "100%",
-                  marginTop: '42px',
+                  width: "45%",
+                  marginTop: "42px",
                   marginLeft: "40px",
                   borderRadius: "15px",
 
@@ -216,13 +215,23 @@ const Propertylist = () => {
               <Box
                 sx={{
                   height: "50px",
-                  width: "58%",
+                  width: "70%",
                   marginTop: "30px",
                   marginLeft: "40px",
                   borderRadius: "15px",
-                  textAlign: "end",
+                  display:'flex',
+                  justifyContent:'space-between'
                 }}
               >
+                <Button
+                  variant="contained"
+                  color="error"
+                  sx={{ borderRadius: "10px" , marginBottom:'30px', marginRight:'5px' ,height:'36px'}}
+                  onClick={() => navigate("/post/:id")}
+                >
+                  Ver Publicación
+                </Button>
+                <Box>
                 <EditIcon
                   color="error"
                   style={{ cursor: "pointer", fontSize: "40px" }}
@@ -235,6 +244,7 @@ const Propertylist = () => {
                     marginRight: "-20px",
                   }}
                 />
+                </Box>
               </Box>
             </Box>
           </Box>

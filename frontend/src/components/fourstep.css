@@ -55,7 +55,7 @@
 
 .box-image_2 {
     height: 222px;
-    width:36%;
+    width: 36%;
     border: 2px dotted;
     border-color: #EA1A1A;
     border-radius: 10px;
@@ -70,17 +70,19 @@
     margin-right: 30px;
 }
 
-.button-remove{
+.button-remove {
     width: 70px;
     height: 45px;
-   border-radius: 45px;
- border-color: #EA1A1A;
-   opacity: 65%;
-   margin-top: 180px;
-   cursor: pointer;
- 
- 
+    border-radius: 45px;
+    border-color: #EA1A1A;
+    opacity: 65%;
+    margin-top: 180px;
+    cursor: pointer;
 }
-.image-remove_item{
+.button-remove:hover{
+    border-color: 10px #EA1A1A;
+}
+
+.image-remove_item {
     z-index: 10;
 }
