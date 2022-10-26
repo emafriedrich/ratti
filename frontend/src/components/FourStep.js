@@ -1,26 +1,47 @@
 import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
 import ProgressButtons from "./button";
-import { Button, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 import { Box } from "@mui/system";
 import "./fourstep.css";
 import CloudUploadRoundedIcon from "@mui/icons-material/CloudUploadRounded";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 import ImageUploading from "react-images-uploading";
+import { useRecoilState } from "recoil";
+import { postAtom } from "../state/atoms/posts";
+import { saveImage } from "../api/images";
+
+const MIN_IMAGES = 5;
 
 const FourStep = () => {
-  const [image, setImage] = React.useState([]);
-  const [plans, setPlans] = React.useState([]);
+  const [uploadingImages, setUploadingImages] = useState(false);
+  const [post, setPost] = useRecoilState(postAtom);
 
-  const onImageChange = (imageList) => {
-    setImage(imageList);
+  const [images, setImages] = React.useState(post.images || []);
+  const [plans, setPlans] = React.useState(post.plans || []);
+
+
+  const onImageChange = async (imageList, addUpdateIndex) => {
+    setUploadingImages(true);
+    if (addUpdateIndex?.length > 0) {
+      for (const index of addUpdateIndex) {
+        const image = imageList[index];
+        const path = await saveImage(image.file);
+        image.serverPath = path;
+      }
+    }
+    setUploadingImages(false);
+    setImages(imageList);
   };
-  const onPlansChange =(plansList) => {
-    setPlans(plansList)
+  const onPlansChange = (plansList) => {
+    setPlans(plansList);
+  };
+
+  const saveImages = () => {
+    setPost({ ...post, images, plans: plans })
   }
 
-  console.log("paso4");
   return (
     <div>
       <Box>
@@ -38,7 +59,7 @@ const FourStep = () => {
       <Box sx={{ display: "flex" }}>
         <ImageUploading
           multiple
-          value={image}
+          value={images}
           onChange={onImageChange}
           dataURLKey="data_url"
         >
@@ -59,7 +80,6 @@ const FourStep = () => {
                 onClick={onImageUpload}
                 {...dragProps}
               >
-                
                 <CloudUploadRoundedIcon sx={{ fontSize: 40 }} color="error" />
                 <Typography
                   sx={{
@@ -72,27 +92,26 @@ const FourStep = () => {
                 </Typography>
               </ButtonUnstyled>
               {imageList.map((image, index) => (
-              <div key={index} className="box-image_preview" style={{backgroundImage:"url('" + image.data_url + "')"}}>
-                
-                <div className="image-item__btn-wrapper">
-                <div className="image-remove_item">
-                  <button onClick={onImageRemove} className='button-remove'>Quitar</button>
+                <div
+                  key={index}
+                  className="box-image_preview"
+                  style={{ backgroundImage: "url('" + image.data_url + "')" }}
+                >
+                  <div className="image-item__btn-wrapper">
+                    <div className="image-remove_item">
+                      <button onClick={onImageRemove} className="button-remove">
+                        Quitar
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                </div>
-              </div>
-            ))}
+              ))}
             </div>
           )}
         </ImageUploading>
 
-
-
-        <image src={image} alt="preview image" />
-        <Paper
-          elevation={1}
-          sx={{ display: "flex" }}
-          className="advise-style"
-        >
+        <image src={images} alt="preview image" />
+        <Paper elevation={1} sx={{ display: "flex" }} className="advise-style">
           <TipsAndUpdatesIcon
             color="error"
             fontSize="large"
@@ -121,7 +140,7 @@ const FourStep = () => {
         </Box>
       </Box>
       <Box sx={{ display: "flex" }}>
-      <ImageUploading
+        <ImageUploading
           multiple
           value={plans}
           onChange={onPlansChange}
@@ -144,7 +163,6 @@ const FourStep = () => {
                 onClick={onImageUpload}
                 {...dragProps}
               >
-                
                 <CloudUploadRoundedIcon sx={{ fontSize: 40 }} color="error" />
                 <Typography
                   sx={{
@@ -152,27 +170,32 @@ const FourStep = () => {
                     textAlign: "center",
                     fontSize: "14px",
                   }}
-                >Arrastrá o agregá los planos de la Propiedad
+                >
+                  Arrastrá o agregá los planos de la Propiedad
                 </Typography>
               </ButtonUnstyled>
               {imageList.map((image, index) => (
-              <div key={index} className="box-image_preview" style={{backgroundImage:"url('" + image.data_url + "')"}}>
-                
-                <div className="image-remove_item">
-                  <button onClick={onImageRemove} className='button-remove'>Quitar</button>
+                <div
+                  key={index}
+                  className="box-image_preview"
+                  style={{ backgroundImage: "url('" + image.data_url + "')" }}
+                >
+                  <div className="image-remove_item">
+                    <button onClick={onImageRemove} className="button-remove">
+                      Quitar
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
             </div>
           )}
         </ImageUploading>
-            
-         
-        <image src={image} alt="preview image" />
+
+        <image src={images} alt="preview image" />
       </Box>
 
       <Stack spacing={2} direction="row" sx={{ justifyContent: "end" }}>
-        <ProgressButtons />
+        <ProgressButtons disableProgress={uploadingImages || images.length < MIN_IMAGES} onChange={saveImages}/>
       </Stack>
     </div>
   );

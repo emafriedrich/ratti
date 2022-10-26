@@ -1,73 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import Stack from "@mui/material/Stack";
 import { Box, Typography } from "@mui/material";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { FormControl } from "@mui/material";
 import ProgressButtons from "./button";
+import { useRecoilState } from "recoil";
+import { postAtom } from "../state/atoms/posts";
 
 
 const FirstStep = () => {
-  console.log('paso1')
-  const [buildings, setbuildings] = React.useState("");
-  const [subTipeBuildings, setsubtipebuildings] = React.useState("");
-  const [selectOn, setSelectOn] = React.useState(true);
-
-  const handleChangeBuildings = (event) => {
-    setbuildings(event.target.value);
-    setSelectOn(false);
-  };
-
-  const handleChangeSubBuildings = (event) => {
-    setsubtipebuildings(event.target.value);
-  };
+  const [post, setPost] = useRecoilState(postAtom);
+  const [type, setType] = useState(post.type);
 
   return (
     <div>
       <FormControl sx={{ mt: 6, mb: 2, minWidth: 120 }} direction="row">
-      <Box sx={{ display: "flex", flexDirection: "row", width: "100%" , mb:5 }}>
-        <Typography sx={{width:'53%',fontSize:'20px'}}><b>Tipo de Propiedad</b></Typography>
-        <Typography sx={{width:'40%',fontSize:'20px'}}><b>Subtipo de Propiedad</b></Typography>
+        <Box sx={{ display: "flex", flexDirection: "row", width: "100%", mb: 5 }}>
+          <Typography sx={{ width: '53%', fontSize: '20px' }}><b>Tipo de Propiedad</b></Typography>
         </Box>
         <Stack direction="row">
-        
           <Box>
             <Select
               select
               sx={{ width: "300px", mr: 4 }}
               color="error"
-              value={buildings}
-              onChange={handleChangeBuildings}
+              value={post.type}
+              onChange={(event) => setType(event.target.value)}
             >
-              <MenuItem value=""></MenuItem>
-              <MenuItem value="Lotes" sx={{ textAlign: "center" }}>
-                Lotes
+              <MenuItem value="land" sx={{ textAlign: "center" }}>
+                Lote
               </MenuItem>
-              <MenuItem value="Edificios">Edificios</MenuItem>
+              <MenuItem value="department">Departamento</MenuItem>
             </Select>
-         
-          </Box>
-          <Box>
-            <Select
-              disabled={selectOn}
-              select
-              sx={{ width: "300px" }}
-              color="error"
-              value={subTipeBuildings}
-              onChange={handleChangeSubBuildings}
-            >
-              <MenuItem value=""></MenuItem>
-              <MenuItem value="Lotes" sx={{ textAlign: "center" }}>
-                Lotes
-              </MenuItem>
-              <MenuItem value="Edificios">Edificios</MenuItem>
-            </Select>
-         
+
           </Box>
         </Stack>
       </FormControl>
       <Box>
-      <ProgressButtons />
+        <ProgressButtons disableProgress={!type} onChange={ () => setPost({ ...post, type })}/>
       </Box>
     </div>
   );

@@ -9,10 +9,12 @@
     "dev": "env-cmd nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts"
   },
   "dependencies": {
+    "cloudinary": "^1.32.0",
     "cors": "^2.8.5",
     "env-cmd": "^10.1.0",
     "express": "^4.17.3",
     "inversify": "^6.0.1",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13"
   },
@@ -20,6 +22,7 @@
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.4.1",
+    "@types/multer": "^1.4.7",
     "@types/node": "^17.0.45",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",

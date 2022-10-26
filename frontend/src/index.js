@@ -21,8 +21,8 @@ root.render(
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
-          <Route path="/new-post" element={<App />} />
           <Route path="/" element={<SearchPlace/>}></Route>
+          <Route path="/new-post" element={<App />} />
           <Route path="/post/:id" element={<CostumerPropertyOffer/>}></Route>
         </Routes>
       </BrowserRouter>

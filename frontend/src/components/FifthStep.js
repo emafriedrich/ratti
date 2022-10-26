@@ -4,8 +4,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { Box, Stack } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import ProgressButtons from "./button";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -15,6 +16,8 @@ import fakeSpectData from "../fixtures/features.json";
 import { useRecoilState } from "recoil";
 import { extrasAtom } from "../state/atoms/extras";
 import Adicionales from "./fifth-step/adicionales";
+import { postAtom } from "../state/atoms/posts";
+import { savePost } from "../api/posts";
 
 let unidGroups = fakeSpectData.reduce((uniqueGroups, actual) => {
   if (!uniqueGroups.includes(actual.feature_group))
@@ -34,11 +37,24 @@ for (const group of unidGroups) {
 }
 
 const FifthStep = () => {
+  const navigate = useNavigate();
+
+  const [post, setPost] = useRecoilState(postAtom);
+
   const [extraGroups] = useRecoilState(extrasAtom);
   const [expanded, setExpanded] = React.useState(extraGroups[0]?.id);
 
+  const [extras, setExtras] = useState(post.extras || {});
+
   const handleChange = (id) => {
     setExpanded(id);
+  };
+
+  const saveExtras = () => {
+    setPost({ ...post, extras });
+    savePost({ ...post, images: post.images.map(img => img.serverPath), extras }).then(() => {
+      navigate('/');
+    });
   };
 
   const Acordions = () => {
@@ -67,9 +83,7 @@ const FifthStep = () => {
             <AccordionDetails>
               {group.extras.map((item) => (
                 <FormControlLabel
-
-                  value="end"
-                  control={<Checkbox color="error" sx={{ marginRight: '20px' }} />}
+                  control={<Checkbox checked={extras[item.id]} onChange={(event) => setExtras({ ...extras, [item.id]: event.target.checked }) } color="error" sx={{ marginRight: '20px' }} />}
                   label={item.name}
                   labelPlacement="end"
                   sx={{ mt: "35px", width: '30%' }}
@@ -102,12 +116,12 @@ const FifthStep = () => {
           ></TextField>
 
           <Acordions />
-          <Adicionales extraGroup={extraGroups.filter(eg => eg.type === 'another')[0]}/>
+          <Adicionales extraGroup={extraGroups.filter(eg => eg.type === 'another')[0]} extras={extras} setExtras={setExtras}/>
         </Box>
 
       </Stack>
       <Stack sx={{ justifyContent: 'end' }}>
-        <ProgressButtons />
+        <ProgressButtons onChange={saveExtras} />
       </Stack>
     </Box>
   );

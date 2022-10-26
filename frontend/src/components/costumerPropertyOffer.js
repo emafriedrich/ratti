@@ -1,5 +1,5 @@
 import { Button, Paper, TextareaAutosize } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Img1 from "../img/test1.png";
 import Img2 from "../img/test2.png";
 import Img3 from "../img/test3.png";
@@ -17,10 +17,19 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChairIcon from "@mui/icons-material/Chair";
-import FormData from "react";
 import { TextField } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { getPost } from "../api/posts";
 
 const CostumerPropertyOffer = () => {
+  const { id } = useParams();
+  
+  useEffect(() => {
+    getPost(id).then((post) => {
+      console.log(post);
+    });
+  });
+
   return (
     <>
       <div className="container">
