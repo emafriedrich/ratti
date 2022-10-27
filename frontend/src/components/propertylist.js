@@ -1,9 +1,12 @@
-import { Box, Button, Divider } from "@mui/material";
+import { Box, Button, Divider} from "@mui/material";
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";;
+
+
+
 
 const Propertylist = () => {
   const navigate = useNavigate();
