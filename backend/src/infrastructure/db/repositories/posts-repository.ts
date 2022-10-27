@@ -31,7 +31,7 @@ export default class PostsRepository {
       dto.currency,
       dto.expenses || null,
       dto.expensesCurrency || null,
-      dto.fitForCredit,
+      dto.fitForCredit || false,
       dto.type,
       dto.subtype || null,
       dto.latitude || null,
