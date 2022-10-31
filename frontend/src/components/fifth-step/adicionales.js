@@ -9,7 +9,7 @@ import {
 
 import { Box } from "@mui/system";
 
-const Adicionales = ({ extraGroup }) => {
+const Adicionales = ({ extraGroup, extras, setExtras }) => {
   return <Box>
     <Box>
       <Typography
@@ -34,8 +34,10 @@ const Adicionales = ({ extraGroup }) => {
           select
           sx={{ width: "80%", mt: 4, borderRadius: "10px" }}
           color="error"
+          value={extras[extraGroup.extras[0].id]}
           label="selecciona una opcion"
           labelId="input-label"
+          onChange={(event) => setExtras({ ...extras, [extraGroup.extras[0].id]: event.target.value } ) }
         >
           {
             JSON.parse(extraGroup.extras[0].posible_values).map(value => {
@@ -52,8 +54,10 @@ const Adicionales = ({ extraGroup }) => {
           select
           sx={{ width: "80%", mt: 4, borderRadius: "10px" }}
           color="error"
+          value={extras[extraGroup.extras[1].id]}
           labelId="input-label_2"
           label="selecciona una opcion"
+          onChange={(event) => setExtras({ ...extras, [extraGroup.extras[1].id]: event.target.value } ) }
         >
           {
             JSON.parse(extraGroup.extras[1].posible_values).map(value => {
@@ -77,8 +81,10 @@ const Adicionales = ({ extraGroup }) => {
           select
           sx={{ width: "80%", mt: 4, borderRadius: "10px" }}
           color="error"
+          value={extras[extraGroup.extras[2].id]}
           labelId="input-label_3"
           label='selecciona una opcion'
+          onChange={(event) => setExtras({ ...extras, [extraGroup.extras[2].id]: event.target.value } ) }
         >
            {
             JSON.parse(extraGroup.extras[2].posible_values).map(value => {
@@ -95,8 +101,10 @@ const Adicionales = ({ extraGroup }) => {
           select
           sx={{ width: "80%", mt: 4, borderRadius: "10px" }}
           color="error"
+          value={extras[extraGroup.extras[3].id]}
           label='Selecciona una opción'
           labelid='input-label_4'
+          onChange={(event) => setExtras({ ...extras, [extraGroup.extras[3].id]: event.target.value } ) }
         >
            {
             JSON.parse(extraGroup.extras[3].posible_values).map(value => {
@@ -120,8 +128,10 @@ const Adicionales = ({ extraGroup }) => {
           select
           sx={{ width: "80%", mt: 4, borderRadius: "10px" }}
           color="error"
+          value={extras[extraGroup.extras[4].id]}
           label='Selecciona una opción'
           labelid='input-label_5'
+          onChange={(event) => setExtras({ ...extras, [extraGroup.extras[4].id]: event.target.value } ) }
         >
           {
             JSON.parse(extraGroup.extras[4].posible_values).map(value => {
@@ -137,8 +147,8 @@ const Adicionales = ({ extraGroup }) => {
           variant="outlined"
           sx={{ width: "80%", mt: 4, borderRadius: "10px" }}
           color="error"
-          placeholder="Ej. uso comercial"
-          type='number'
+          value={extras[extraGroup.extras[5].id]}
+          onChange={(event) => setExtras({ ...extras, [extraGroup.extras[5].id]: event.target.value } ) }
         ></TextField>
       </FormControl>
     </Box>
@@ -150,8 +160,8 @@ const Adicionales = ({ extraGroup }) => {
         variant="outlined"
         sx={{ width: "40%", mt: 4, borderRadius: "10px" }}
         color="error"
-        placeholder="Ej. uso comercial"
-        type='number'
+        value={extras[extraGroup.extras[6].id]}
+        onChange={(event) => setExtras({ ...extras, [extraGroup.extras[6].id]: event.target.value } ) }
       ></TextField>
     </Box>
   </Box>

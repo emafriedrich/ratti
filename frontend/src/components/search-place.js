@@ -1,38 +1,49 @@
-import React, { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Divider from "@mui/material/Divider";
-import CostumerPropertyOffer from "./costumerPropertyOffer";
+import TextField from '@mui/material/TextField';
+import React, { useEffect, useState } from 'react';
 
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  MenuItem,
-  Radio,
-  RadioGroup,
-  Select,
-} from "@mui/material";
-import Propertylist from "./propertylist";
+import { Box, FormControl, MenuItem, Select } from '@mui/material';
+import { getPosts } from '../api/posts';
+import Propertylist from './propertylist';
 
 const SearchPlace = () => {
-  const [ubication, setUbication] = React.useState("");
+  const [posts, setPosts] = useState(null);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getPosts()
+      .then((data) => {
+        setPosts(data);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const [ubication, setUbication] = React.useState('');
   const handleChangeUbication = (event) => {
     setUbication(event.target.value);
   };
 
-  const [property, setProperty] = React.useState("");
+  const [property, setProperty] = React.useState('');
 
   const handleChangeTipeProperty = (event) => {
     setProperty(event.target.value);
   };
   const [propertyType, setPropertyType] = useState('all');
 
+  if (loading) {
+    return <span>... Cargando</span>;
+  }
   return (
-    <Box style={{ marginLeft: '10%', width: "80%" }} >
-      <FormControl sx={{ display: "flex", flexDirection: "row", marginTop: '60px', alignItems: 'center' }}>
+    <Box style={{ marginLeft: '10%', width: '80%' }}>
+      <FormControl
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          marginTop: '60px',
+          alignItems: 'center',
+        }}
+      >
         <TextField
           onChange={handleChangeUbication}
           placeholder="Nombre de la propiedad o lote"
@@ -43,19 +54,20 @@ const SearchPlace = () => {
 
         <Select
           select
-          sx={{ width: "200px", marginLeft: '1%', borderRadius: "10px" }}
+          sx={{ width: '200px', marginLeft: '1%', borderRadius: '10px' }}
           color="error"
           value={propertyType}
-          onChange={ (event) => setPropertyType(event.target.value)}
+          onChange={(event) => setPropertyType(event.target.value)}
         >
           <MenuItem value="all">Todos</MenuItem>
-          <MenuItem value="department" >Departamento</MenuItem>
-          <MenuItem value="lote" >Lote</MenuItem>
+          <MenuItem value="department">Departamento</MenuItem>
+          <MenuItem value="lote">Lote</MenuItem>
         </Select>
         <span style={{ marginLeft: 'auto' }}> 3 propiedades encontradas </span>
       </FormControl>
-      <Propertylist />
-    
+      {posts.map((p) => (
+        <Propertylist post={p} />
+      ))}
     </Box>
   );
 };

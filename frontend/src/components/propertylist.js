@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";;
 
 
 
-const Propertylist = () => {
+const Propertylist = ({ post }) => {
   const navigate = useNavigate();
 
   return (
@@ -60,12 +60,12 @@ const Propertylist = () => {
                 fontWeight={500}
                 style={{ fontSize: "12px", color: "#8A8181" }}
               >
-                Departamento
+                { post.type === 'land' ? 'Terreno' : 'Departamento' }
               </span>
             </Box>
             <Box sx={{ marginTop: "10px" }}>
               <span style={{ fontSize: "15px" }}>
-                Departamento grande en Posadas
+                { post.title }
               </span>
             </Box>
             <Box sx={{ marginTop: "24px" }}>

@@ -5,23 +5,45 @@ import { TextField } from "@mui/material";
 import { FormControl } from "@mui/material";
 import ProgressButtons from "./button";
 
+import { useFormik } from 'formik';
+import { useRecoilState } from "recoil";
+import { postAtom } from "../state/atoms/posts";
+
+const validate = (values) => {
+  const errors = {};
+  if (!values.address || values.address.length < 5) {
+    errors.address = 'La direccion es requerida';
+  }
+  if (!values.province) {
+    errors.province = 'Lo provincia es requerida';
+  }
+  if (!values.city) {
+    errors.city = 'La ciudad es requerida';
+  }
+  return errors;
+};
+
 const SecondStep = () => {
-  console.log("paso2");
-  const [streetIdress, setstreetIdress] = React.useState("");
-  const [subTipeBuildings, setsubtipebuildings] = React.useState("");
-  const [Province, setProvince] = React.useState("");
-  const [neighborhood, setneighborhood] = React.useState("");
-  const [zone, setzone] = React.useState("");
-
-  const handleChangeStreetIdress = (event) => {
-    setstreetIdress(event.target.value);
+  const [post, setPost] = useRecoilState(postAtom);
+  const formik = useFormik({
+    initialValues: {
+      address: post.address,
+      province: post.province || 'Misiones',
+      city: post.city || 'Posadas',
+      neighborhood: post.neighborhood,
+    },
+    validate,
+  });
+  const handleProgress = () => {
+    setPost({
+      ...post,
+      address: formik.values.address,
+      province: formik.values.province,
+      city: formik.values.city,
+      neighborhood: formik.values.neighborhood,
+    });
   };
 
- 
-
-  const handleChangeSubBuildings = (event) => {
-    setsubtipebuildings(event.target.value);
-  };
   return (
     <div>
       <h2>Ingresa la ubicacion de la propiedad</h2>
@@ -44,57 +66,51 @@ const SecondStep = () => {
             fullWidth
             label=""
             TextField
+            value={formik.values.address}
             sx={{ m: 4 }}
             color="error"
-            value={streetIdress}
-            onChange={handleChangeStreetIdress}
+            id="address"
+            name="address"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
           ></TextField>
+          {formik.errors.address ? <div>{formik.errors.address}</div> : null}
         </Stack>
-        <Box sx={{ display: "flex", flexDirection: "row", width: "100%" , mt:5, ml:4 }}>
-        <Typography sx={{width:'50%'}}><b>Provincia</b></Typography>
-        <Typography sx={{width:'40%'}}><b>Ciudad</b></Typography>
+        <Box sx={{ display: "flex", flexDirection: "row", width: "100%", mt: 5, ml: 4 }}>
+          <Typography sx={{ width: '50%' }}><b>Provincia</b></Typography>
+          <Typography sx={{ width: '40%' }}><b>Ciudad</b></Typography>
         </Box>
         <Stack direction="row" sx={{ width: "100%" }}>
           <TextField
-            
+            name="province"
+            onChange={formik.handleChange}
             TextField
             sx={{ m: 4, width: "50%" }}
             color="error"
-            value={subTipeBuildings}
-            onChange={handleChangeSubBuildings}
+            value={formik.values.province}
           ></TextField>
+          {formik.errors.province ? <div>{formik.errors.province}</div> : null}
 
           <TextField
-            
+            onChange={formik.handleChange}
             TextField
+            name="city"
             sx={{ m: 4, width: "50%" }}
             color="error"
-            value={Province}
-            onChange={handleChangeSubBuildings}
+            value={formik.values.city}
           ></TextField>
         </Stack>
-        <Box sx={{ display: "flex", flexDirection: "row", width: "100%" , mt:5, ml:4 }}>
-        <Typography sx={{width:'50%'}}><b>Barrio</b></Typography>
-        <Typography sx={{width:'40%'}}><b>Subzona</b></Typography>
+        <Box sx={{ display: "flex", flexDirection: "row", width: "100%", mt: 5, ml: 4 }}>
+          <Typography sx={{ width: '50%' }}><b>Barrio</b></Typography>
         </Box>
         <Stack direction="row" sx={{ width: "100%" }}>
           <TextField
-            
-           
             TextField
+            onChange={formik.handleChange}
             sx={{ m: 4, width: "50%" }}
             color="error"
-            value={neighborhood}
-            onChange={handleChangeSubBuildings}
-          ></TextField>
-          <TextField
-          disabled
-          
-            TextField
-            sx={{ m: 4, width: "50%" }}
-            color="error"
-            value={zone}
-            onChange={handleChangeSubBuildings}
+            name="neighborhood"
+            value={formik.values.neighborhood}
           ></TextField>
         </Stack>
       </FormControl>
@@ -105,7 +121,7 @@ const SecondStep = () => {
           justifyContent={"Flex-end"}
           sx={{ mt: 10 }}
         >
-          <ProgressButtons />
+          <ProgressButtons disableProgress={!formik.isValid || !formik.values.address || !formik.values.city || !formik.values.province} onChange={handleProgress} />
         </Stack>
       </Box>
     </div>

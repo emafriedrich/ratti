@@ -4,14 +4,16 @@ import { Stack } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { currentStepAtom } from "../state/atoms/steper";
 
-const ProgressButtons = () => {
+const ProgressButtons = ({ disableProgress, onChange }) => {
   const [currentStep, setCurrentStep] = useRecoilState(currentStepAtom);
 
   function handleNext() {
+    onChange && onChange();
     setCurrentStep(currentStep + 1);
   }
 
   function handleBack() {
+    onChange && onChange();
     setCurrentStep(currentStep - 1);
   }
 
@@ -29,10 +31,11 @@ const ProgressButtons = () => {
               <Button
                 onClick={handleNext}
                 variant="contained"
+                disabled={disableProgress}
                 style={{
                   width: "150px",
                   height: "50px",
-                  backgroundColor: "#F11D41",
+                  backgroundColor: !disableProgress && "#F11D41",
                   borderRadius: "10px",
                 }}
               >
@@ -66,10 +69,11 @@ const ProgressButtons = () => {
               <Button
                 onClick={handleNext}
                 variant="contained"
+                disabled={disableProgress}
                 style={{
                   width: "150px",
                   height: "50px",
-                  backgroundColor: "#F11D41",
+                  backgroundColor: !disableProgress && "#F11D41",
                   borderRadius: "10px",
                 }}
               >
@@ -98,12 +102,13 @@ const ProgressButtons = () => {
                 Atrás{" "}
               </Button>
               <Button
-
                 variant="contained"
+                disabled={disableProgress}
+                onClick={() => onChange?.() }
                 style={{
                   width: "150px",
                   height: "50px",
-                  backgroundColor: "#F11D41",
+                  backgroundColor: !disableProgress && "#F11D41",
                   borderRadius: "10px",
                 }}
               >
