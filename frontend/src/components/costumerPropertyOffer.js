@@ -24,11 +24,14 @@ import { getPost } from "../api/posts";
 const CostumerPropertyOffer = () => {
   const { id } = useParams();
   
+  const [post, setPost] = useState(null);
   useEffect(() => {
     getPost(id).then((post) => {
-      console.log(post);
+      setPost(post);
     });
   });
+
+  if (!post) return '... cargando';
 
   return (
     <>
@@ -150,7 +153,7 @@ const CostumerPropertyOffer = () => {
                     margin: "8px 0",
                   }}
                 >
-                  Venta Departamento 5 Ambientes Posadas
+                  {post.title}
                 </span>
               </div>
               <div className="title-location" style={{ marginTop: "12px" }}>
