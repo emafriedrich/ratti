@@ -138,20 +138,7 @@ const Propertylist = ({ post }) => {
                   borderRadius: "15px",
                   textAlign: "center",
                   lineHeight: "45px",
-                }}
-              >
-                <span>Exposición</span>
-                <Box sx={{ marginTop: "3px", fontSize: "25px" }}>12</Box>
-              </Box>
-              <Box
-                sx={{
-                  height: "90px",
-                  width: "40%",
-                  border: "1px solid #676161",
-                  marginLeft: "40px",
-                  borderRadius: "15px",
-                  textAlign: "center",
-                  lineHeight: "45px",
+                  cursor: 'pointer'
                 }}
               >
                 <span>Interesados</span>
@@ -230,7 +217,7 @@ const Propertylist = ({ post }) => {
                   variant="contained"
                   color="error"
                   sx={{ borderRadius: "10px" , marginBottom:'30px', marginRight:'5px' ,height:'36px'}}
-                  onClick={() => navigate("/post/:id")}
+                  onClick={() => navigate(`/post/${post.id}`)}
                 >
                   Ver Publicación
                 </Button>

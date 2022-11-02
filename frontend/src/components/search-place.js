@@ -63,7 +63,7 @@ const SearchPlace = () => {
           <MenuItem value="department">Departamento</MenuItem>
           <MenuItem value="lote">Lote</MenuItem>
         </Select>
-        <span style={{ marginLeft: 'auto' }}> 3 propiedades encontradas </span>
+        <span style={{ marginLeft: 'auto' }}> {posts.length} propiedad{posts.length > 1 ? 'es' : ''} encontrada{posts.length > 1 ? 's' : ''} </span>
       </FormControl>
       {posts.map((p) => (
         <Propertylist post={p} />

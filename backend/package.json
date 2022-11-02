@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
     "db:migrate": "env-cmd ts-node src/infrastructure/db/migrations/lib/scripts/db-migrate.ts",
     "db:setup": "env-cmd ts-node src/infrastructure/db/migrations/lib/scripts/setup.ts",
     "dev": "env-cmd nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts"

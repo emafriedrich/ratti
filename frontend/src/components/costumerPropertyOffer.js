@@ -2,12 +2,6 @@ import {
   Button,
   Paper,
   Typography,
-  Modal,
-  Box,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
 } from '@mui/material';
 
 import { TextareaAutosize } from '@mui/material';
@@ -31,118 +25,24 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChairIcon from '@mui/icons-material/Chair';
 import { TextField } from '@mui/material';
 
-import { borderRadius } from '@mui/system';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
 import { useParams } from 'react-router-dom';
 import { getPost } from '../api/posts';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+import FinancingModal from './financing-modal';
 
 const CostumerPropertyOffer = () => {
-  const [SelectedPost, setSelectedPost] = React.useState(null)
+  const [selectedPost, setSelectedPost] = React.useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     getPost(id).then((post) => {
-      console.log(post);
-      setSelectedPost(post)
+      setSelectedPost(post);
     });
-  },[]);
+  }, []);
 
-  const [Modalopen, setModalOpen] = React.useState(false);
-  const handleModalOpen = () => setModalOpen(true);
-  const handleModalClose = () => setModalOpen(false);
+  const [showModal, setShowModal] = React.useState(false);
+  const handleModalOpen = () => setShowModal(true);
 
-  const [isInstallments, setisInstallments] = React.useState(false);
-
-  const [installments, setInstallments] = React.useState('');
-  const [openSelect, setOpenSelect] = React.useState(false);
-
-  const handleChangeSelect = (event) => {
-    setInstallments(event.target.value);
-  };
-
-  const handleChangeInstallments = (event) => {
-    setisInstallments(true);
-  };
-
-  const handleCloseSelect = () => {
-    setOpenSelect(false);
-  };
-
-  const handleOpenSelect = () => {
-    setOpenSelect(true);
-  };
-  const [InitialAmount, setInitialAmount] = React.useState(0);
-  const handleAmount = (event) => {
-    setInitialAmount(event.target.value);
-  };
-
-  function createData(name, monto) {
-    return { name, monto };
-  }
-
-  const rows = [
-    createData('Cuota 1', '1200'),
-    createData('Cuota 2', '2400'),
-    createData('Cuota 3', '3600'),
-    createData('Cuota 4', '4800'),
-    createData('Cuota 5', '6000'),
-    createData('Cuota 6', '7200'),
-    createData('Cuota 7', '8400'),
-    createData('Cuota 8', '9600'),
-  ];
-
-  const planDeCuotas = (
-    <div style={{ marginTop: '50px' }}>
-      <div>
-        <span>Entrega: $ {InitialAmount}</span>
-      </div>
-      <div>
-        <TableContainer component={Paper} sx={{ marginTop: '50px' }}>
-          <Table sx={{ minWidth: 300 }} size="small" aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Cuotas</TableCell>
-                <TableCell align="center">Monto</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell align="center" component="th" scope="row">
-                    {row.name}
-                  </TableCell>
-
-                  <TableCell align="center">{row.monto}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </div>
-    </div>
-  );
-
-  if (!SelectedPost) return '... cargando';
+  if (!selectedPost) return '... cargando';
 
   return (
     <>
@@ -230,7 +130,7 @@ const CostumerPropertyOffer = () => {
                     flexDirection: 'column',
                   }}
                 >
-                  <span>{SelectedPost.price}</span>
+                  <span>{selectedPost.price}</span>
                 </div>
                 <div
                   className="expensas"
@@ -240,7 +140,7 @@ const CostumerPropertyOffer = () => {
                     paddingBottom: '5px',
                   }}
                 >
-                  + <span>{SelectedPost.expenses}</span> Expensas
+                  + <span>{selectedPost.expenses}</span> Expensas
                 </div>
                 <div
                   className="data-text"
@@ -251,7 +151,8 @@ const CostumerPropertyOffer = () => {
                     margin: '10px 0',
                   }}
                 >
-                  <span>{SelectedPost.type}</span> ap* 107M2 * 5 Ambientes * Cochera *{' '}
+                  <span>{selectedPost.type}</span> ap* 107M2 * 5 Ambientes *
+                  Cochera *{' '}
                 </div>
               </Paper>
             </div>
@@ -266,7 +167,7 @@ const CostumerPropertyOffer = () => {
                     margin: '8px 0',
                   }}
                 >
-                  {SelectedPost.title}
+                  {selectedPost.title}
                 </span>
               </div>
               <div className="title-location" style={{ marginTop: '12px' }}>
@@ -280,7 +181,8 @@ const CostumerPropertyOffer = () => {
                     margin: 0,
                   }}
                 >
-                  {SelectedPost.address}</span>
+                  {selectedPost.address}
+                </span>
               </div>
               <div
                 className="credit"
@@ -290,7 +192,9 @@ const CostumerPropertyOffer = () => {
                   color="error"
                   sx={{ marginRight: '5px' }}
                 />
-                <span style={{ marginRight: '5px' }}>Apto Crédito{SelectedPost.fitForCredit}</span>
+                <span style={{ marginRight: '5px' }}>
+                  Apto Crédito{selectedPost.fitForCredit}
+                </span>
                 <Button
                   onClick={handleModalOpen}
                   style={{ backgroundColor: '#346CEE', borderRadius: '10px' }}
@@ -298,63 +202,6 @@ const CostumerPropertyOffer = () => {
                 >
                   Simulá tu Crédito
                 </Button>
-                <Modal
-                  open={Modalopen}
-                  onClose={handleModalClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                >
-                  <Box sx={style}>
-                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                      <TextField
-                        type={'number'}
-                        id="outlined-basic"
-                        label="Entrega"
-                        variant="outlined"
-                        color="error"
-                        style={{ marginBottom: '30px' }}
-                        onChange={handleAmount}
-                      />
-
-                      <FormControl sx={{ m: 1, minWidth: 120, margin: '0' }}>
-                        <InputLabel
-                          id="demo-controlled-open-select-label"
-                          sx={{ color: '#000000' }}
-                        >
-                          Cantidad de cuotas
-                        </InputLabel>
-                        <Select
-                          labelId="demo-controlled-open-select-label"
-                          id="demo-controlled-open-select"
-                          open={openSelect}
-                          onClose={handleCloseSelect}
-                          onOpen={handleOpenSelect}
-                          value={installments}
-                          label="Cuotas"
-                          onChange={handleChangeSelect}
-                          color="error"
-                        >
-                          <MenuItem value={12}>12</MenuItem>
-                          <MenuItem value={18}>18</MenuItem>
-                          <MenuItem value={24}>24</MenuItem>
-                          <MenuItem value={30}>30</MenuItem>
-                          <MenuItem value={36}>36</MenuItem>
-                          <MenuItem value={42}>42</MenuItem>
-                          <MenuItem value={48}>48</MenuItem>
-                        </Select>
-                      </FormControl>
-                      <Button
-                        style={{ marginTop: '30px', borderRadius: '10px' }}
-                        variant="contained"
-                        color="error"
-                        onClick={handleChangeInstallments}
-                      >
-                        Calculá tu plan de cuotas
-                      </Button>
-                      {isInstallments && planDeCuotas}
-                    </Box>
-                  </Box>
-                </Modal>
               </div>
               <div
                 className="description-property"
@@ -363,10 +210,10 @@ const CostumerPropertyOffer = () => {
                   textAlign: 'left',
                   height: 'auto',
                   fontSize: '18.5px',
-                  wordWrap: 'break-word'
+                  wordWrap: 'break-word',
                 }}
               >
-                <span>{SelectedPost.description}</span>
+                <span>{selectedPost.description}</span>
               </div>
             </div>
             <div className="row-3" style={{ marginTop: '50px' }}>
@@ -581,6 +428,7 @@ const CostumerPropertyOffer = () => {
             </Typography>
           </Paper>
         </div>
+        <FinancingModal open={showModal} onClose={() => setShowModal(false)} />
       </div>
     </>
   );
