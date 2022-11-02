@@ -54,13 +54,15 @@ const style = {
 };
 
 const CostumerPropertyOffer = () => {
+  const [SelectedPost, setSelectedPost] = React.useState(null)
   const { id } = useParams();
 
   useEffect(() => {
     getPost(id).then((post) => {
       console.log(post);
+      setSelectedPost(post)
     });
-  });
+  },[]);
 
   const [Modalopen, setModalOpen] = React.useState(false);
   const handleModalOpen = () => setModalOpen(true);
@@ -140,7 +142,7 @@ const CostumerPropertyOffer = () => {
     </div>
   );
 
-  if (!post) return '... cargando';
+  if (!SelectedPost) return '... cargando';
 
   return (
     <>
@@ -228,7 +230,7 @@ const CostumerPropertyOffer = () => {
                     flexDirection: 'column',
                   }}
                 >
-                  <span>USD 1 800 000</span>
+                  <span>{SelectedPost.price}</span>
                 </div>
                 <div
                   className="expensas"
@@ -238,7 +240,7 @@ const CostumerPropertyOffer = () => {
                     paddingBottom: '5px',
                   }}
                 >
-                  + <span>$21 000</span> Expensas
+                  + <span>{SelectedPost.expenses}</span> Expensas
                 </div>
                 <div
                   className="data-text"
@@ -249,7 +251,7 @@ const CostumerPropertyOffer = () => {
                     margin: '10px 0',
                   }}
                 >
-                  Departamento * 107M2 * 5 Ambientes * Cochera *{' '}
+                  <span>{SelectedPost.type}</span> ap* 107M2 * 5 Ambientes * Cochera *{' '}
                 </div>
               </Paper>
             </div>
@@ -264,7 +266,7 @@ const CostumerPropertyOffer = () => {
                     margin: '8px 0',
                   }}
                 >
-                  {post.title}
+                  {SelectedPost.title}
                 </span>
               </div>
               <div className="title-location" style={{ marginTop: '12px' }}>
@@ -278,9 +280,7 @@ const CostumerPropertyOffer = () => {
                     margin: 0,
                   }}
                 >
-                  San Martín 805
-                </span>
-                <span> Posadas , Ciudad Capital</span>
+                  {SelectedPost.address}</span>
               </div>
               <div
                 className="credit"
@@ -290,7 +290,7 @@ const CostumerPropertyOffer = () => {
                   color="error"
                   sx={{ marginRight: '5px' }}
                 />
-                <span style={{ marginRight: '5px' }}>Apto Crédito</span>
+                <span style={{ marginRight: '5px' }}>Apto Crédito{SelectedPost.fitForCredit}</span>
                 <Button
                   onClick={handleModalOpen}
                   style={{ backgroundColor: '#346CEE', borderRadius: '10px' }}
@@ -363,54 +363,10 @@ const CostumerPropertyOffer = () => {
                   textAlign: 'left',
                   height: 'auto',
                   fontSize: '18.5px',
+                  wordWrap: 'break-word'
                 }}
               >
-                <span>
-                  {' '}
-                  Corredor Responsable: Marcos Dominguez CUCICBA 5666 / CSI 5888
-                  -
-                </span>
-                <span>Contacto: Mirta Ofelia Perea - MLS ID # </span>
-                <span>
-                  Venta departamento cinco ambientes muy luminoso, Orientación
-                  NE. Ingresando al edificio nos encontramos con amplio palier y
-                  dos ascensores. Departamento 5 ambientes, con balcón y
-                  cochera.
-                  <br></br>
-                  <br></br>
-                  Ingresando nos encontramos con el living comedor muy espacioso
-                  con salida a balcón, Pasillo distribuidor.
-                  <br></br>
-                  <br></br>Posee 4 dormitorios amplios con placar, 2 baños
-                  completos con ducha. Cocina comedor con muebles sobre y bajo
-                  mesada y lavadero separado, que ventila al exterior. Los pisos
-                  de porcelanato. Calefacción por calefactor. Encargado
-                  permanente. Ubicación: Excelente ubicación.
-                  <br></br>
-                  <br></br> Se encuentra haciendo esquina, sobre las calles
-                  Puertas: Gral. César Díaz 1971/75/1999 – Andrés Lamas
-                  1825/45/75, Piso 1° Dpto. “B” Villa General Mitre. CABA. Gran
-                  caudal de medios de transportes y facilidad de accesos.
-                  <br></br>
-                  <br></br> Expensas Junio/2022: $ 21.697
-                  <br></br>
-                  <br></br>La oficina es de operación y gestión independiente.
-                  La presente publicación describe las características
-                  esenciales del inmueble, debiéndose consultar al corredor
-                  público inmobiliario responsable de la operación por la
-                  eventual actualización de las medidas, descripciones
-                  arquitectónicas y funcionales, valores de expensas, servicios,
-                  impuestos, precios y demás información, cuyos valores son
-                  aproximados. Los agentes/gestores NO ejercen el corretaje
-                  inmobiliario. Todas las operaciones inmobiliarias son objeto
-                  de intermediación y conclusión por parte del corredor público
-                  inmobiliario responsable de la presente publicación. El
-                  inmueble no es accesible para personas con discapacidades
-                  físicas.
-                  <br></br>
-                  <br></br> Comprá la casa que querés! No la que podés. Accedé a
-                  un préstamo por hasta el 30% del valor de esta propiedad.{' '}
-                </span>
+                <span>{SelectedPost.description}</span>
               </div>
             </div>
             <div className="row-3" style={{ marginTop: '50px' }}>
