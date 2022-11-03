@@ -1,40 +1,53 @@
 import TextField from '@mui/material/TextField';
 import React, { useEffect, useState } from 'react';
 
-import { Box, FormControl, MenuItem, Select } from '@mui/material';
+import { Box, Button, FormControl, MenuItem, Select } from '@mui/material';
 import { getPosts } from '../api/posts';
 import Propertylist from './propertylist';
-
+import { useNavigate } from 'react-router-dom';
+import { postAtom } from '../state/atoms/posts';
+import { useRecoilState } from 'recoil';
+import { currentStepAtom } from '../state/atoms/steper';
+import { propertyGroupsAtom } from '../state/atoms/property-groups';
+import { getAll } from '../api/property-groups';
 
 const SearchPlace = () => {
-  const [posts, setPosts] = useState(null);
+  const navigate = useNavigate();
+
+  const [posts, setPosts] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
-    getPosts()
-      .then((data) => {
-        setPosts(data);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  const [, setPost] = useRecoilState(postAtom);
 
-  const [ubication, setUbication] = React.useState('');
-  const handleChangeUbication = (event) => {
-    setUbication(event.target.value);
-  };
+  const [, setCurrentStep] = useRecoilState(currentStepAtom);
 
-  const [property, setProperty] = React.useState('');
+  const [propertyGroupId, setPropertyGroupId] = useState(null);
 
-  const handleChangeTipeProperty = (event) => {
-    setProperty(event.target.value);
-  };
   const [propertyType, setPropertyType] = useState('all');
 
-  if (loading) {
-    return <span>... Cargando</span>;
-  }
+  const [propertyGroups, setPropertyGroups] =
+    useRecoilState(propertyGroupsAtom);
+
+  useEffect(() => {
+    searchPosts();
+  }, []);
+
+  const searchPosts = (propertyType, propertyGroupId) => {
+    setLoading(true);
+    setTimeout(() => {
+      getPosts(propertyType, propertyGroupId)
+        .then((data) => {
+          setPosts(data);
+        })
+        .finally(() => setLoading(false));
+    }, 100);
+  };
+
+  useEffect(() => {
+    getAll().then((data) => setPropertyGroups(data));
+  }, []);
+
   return (
     <Box style={{ marginLeft: '10%', width: '80%' }}>
       <FormControl
@@ -46,39 +59,40 @@ const SearchPlace = () => {
           width: '90%',
         }}
       >
-        <TextField
-          onChange={handleChangeUbication}
-          placeholder="Nombre de la propiedad o lote"
-          value={ubication}
-          color="error"
-          sx={{ width: '30%' }}
-        ></TextField>
-
         <Select
           select
           sx={{ width: '200px', marginLeft: '1%', borderRadius: '10px' }}
           color="error"
           value={propertyType}
-          onChange={(event) => setPropertyType(event.target.value)}
+          onChange={(event) => {
+            setPropertyType(event.target.value);
+            searchPosts(event.target.value, propertyGroupId);
+          }}
         >
           <MenuItem value="all">Todos</MenuItem>
-          <MenuItem value="buildins">Edificios</MenuItem>
-          <MenuItem value="loteos">Loteos</MenuItem>
+          <MenuItem value="apartments">Edificios</MenuItem>
+          <MenuItem value="lands">Loteos</MenuItem>
         </Select>
         <Select
           select
-          sx={{ width: '200px', marginLeft: '1%', borderRadius: '10px' }}
+          sx={{ width: '300px', mr: 4 }}
           color="error"
-          disabled
-          value={propertyType}
-          onChange={(event) => setPropertyType(event.target.value)}
+          disabled={propertyType === 'all'}
+          value={propertyGroupId}
+          onChange={(e) => {
+            setPropertyGroupId(e.target.value);
+            searchPosts(propertyType, e.target.value);
+          }}
         >
-          <MenuItem value="Charlotte-Belgrano">Charlotte Belgrano</MenuItem>
-          <MenuItem value="Velvet">Velvet</MenuItem>
-          <MenuItem value="Marwa">Marwa</MenuItem>
-          <MenuItem value="WindHouse">WindHouse</MenuItem>
-          <MenuItem value="Kona-21º">Kona 21º</MenuItem>
-          <MenuItem value="Velas">Velas</MenuItem>
+          {propertyGroups
+            .filter((pg) => propertyType === 'all' || pg.type === propertyType)
+            .map((pg) => {
+              return (
+                <MenuItem value={pg.id} sx={{ textAlign: 'center' }}>
+                  {pg.name}
+                </MenuItem>
+              );
+            })}
         </Select>
 
         <span style={{ marginLeft: 'auto' }}>
@@ -87,9 +101,21 @@ const SearchPlace = () => {
           {posts.length > 1 ? 's' : ''}{' '}
         </span>
       </FormControl>
-      {posts.map((p) => (
-        <Propertylist post={p} />
-      ))}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          variant="contained"
+          color="error"
+          sx={{ borderRadius: '10px' }}
+          onClick={() => {
+            setPost({});
+            setCurrentStep(0);
+            navigate('/new-post');
+          }}
+        >
+          Nueva Publicación
+        </Button>
+      </Box>
+      {loading ? 'Cargando...' : posts.map((p) => <Propertylist post={p} />)}
     </Box>
   );
 };

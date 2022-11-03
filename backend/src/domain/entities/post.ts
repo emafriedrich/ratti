@@ -13,6 +13,7 @@ export type Props = {
   address: string;
   subtype: string;
   type: 'department' | 'land';
+  propertyGroupId: number;
   images: string[];
   plans: string[];
 };

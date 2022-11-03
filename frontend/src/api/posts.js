@@ -5,8 +5,8 @@ export async function savePost(post) {
   return data;
 }
 
-export async function getPosts() {
-  const { data } = await api.get('/posts');
+export async function getPosts(propertyType, propertyGroupId) {
+  const { data } = await api.get('/posts', { params: { propertyGroupId, propertyType }});
   return data;
 }
 

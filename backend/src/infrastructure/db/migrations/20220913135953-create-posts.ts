@@ -11,8 +11,6 @@ export default class CreatePublication extends Migration {
       
       CREATE TABLE posts(
         id SERIAL PRIMARY KEY,
-        type ENUM('department', 'land') NOT NULL DEFAULT 'department',
-        subtype VARCHAR(50),
         address VARCHAR(500) NOT NULL,
         latitude DECIMAL(11, 8),
         longitude DECIMAL(11, 8),

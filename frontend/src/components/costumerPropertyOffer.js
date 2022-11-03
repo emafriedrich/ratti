@@ -1,7 +1,7 @@
 import { Button, Paper, Typography } from '@mui/material';
 
 import { TextareaAutosize } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Img1 from '../img/test1.png';
 import Img2 from '../img/test2.png';
@@ -31,7 +31,7 @@ import 'yet-another-react-lightbox/styles.css';
 const CostumerPropertyOffer = () => {
   const [selectedPost, setSelectedPost] = React.useState(null);
   const { id } = useParams();
-  const [openPic, setOpenPic] = React.useState(false);
+  const [showImageIndex, setShowImageIndex] = useState(-1);
 
   useEffect(() => {
     getPost(id).then((post) => {
@@ -39,7 +39,7 @@ const CostumerPropertyOffer = () => {
     });
   }, []);
 
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const handleModalOpen = () => setShowModal(true);
 
   if (!selectedPost) return '... cargando';
@@ -50,31 +50,32 @@ const CostumerPropertyOffer = () => {
         <div className="box-img">
           <div className="col-first">
             <div className="box-image_first">
-              <img className="img-first" src={Img1} alt="pics"></img>
+              <img className="img-first" src={Img1} alt="pics" onClick={() => setShowImageIndex(0)}></img>
             </div>
           </div>
           <div className="col-second">
             <div className="row-first">
               <div className="box-image_second">
-                <img className="img-second" src={Img2} alt="pics"></img>
+                <img className="img-second" src={Img2} alt="pics" onClick={() => setShowImageIndex(1)}></img>
               </div>
               <div className="box-image_third">
-                <img className="img-third" src={Img3} alt="pics"></img>
+                <img className="img-third" src={Img3} alt="pics" onClick={() => setShowImageIndex(2)}></img>
               </div>
             </div>
             <div className="row-first">
               <div className="box-image_four">
-                <img className="img-four" src={Img4} alt="pics"></img>
+                <img className="img-four" src={Img4} alt="pics" onClick={() => setShowImageIndex(3)}></img>
               </div>
               <div className="box-image_five">
-                <img className="img-five" src={Img5} onClick={() => setOpenPic(true)} alt="pics"></img>
+                <img className="img-five" src={Img5} alt="pics" onClick={() => setShowImageIndex(4)}></img>
               </div>
             </div>
           </div>
         </div>
         <Lightbox
-          open={openPic}
-          close={() => setOpenPic(false)}
+          open={showImageIndex > -1}
+          close={() => setShowImageIndex(-1)}
+          index={showImageIndex}
           slides={[{ src: Img1},{ src: Img2},{ src: Img3},{ src: Img4},{ src: Img5 }]}
         />
         <div

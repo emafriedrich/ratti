@@ -1,7 +1,6 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
-export const currentStepAtom = atom ({
-    key:'currentStepAtom',
-    default:0
-})
-
+export const currentStepAtom = atom({
+  key: 'currentStepAtom',
+  default: 0,
+});

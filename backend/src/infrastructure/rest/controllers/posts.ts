@@ -11,7 +11,7 @@ export async function savePost(req: express.Request, res: express.Response) {
 
 export async function getPosts(req: express.Request, res: express.Response) {
   const useCase = container.get(GetPosts);
-  const posts = await useCase.execute();
+  const posts = await useCase.execute(req.query.propertyType as string, +(req.query.propertyGroupId as string));
   res.send(posts);
 }
 

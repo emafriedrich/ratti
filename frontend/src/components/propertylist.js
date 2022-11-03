@@ -3,10 +3,7 @@ import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useNavigate } from "react-router-dom";;
-
-
-
+import { useNavigate } from "react-router-dom";
 
 const Propertylist = ({ post }) => {
   const navigate = useNavigate();
@@ -21,16 +18,6 @@ const Propertylist = ({ post }) => {
       }}
     >
       <Box sx={{ width: "90%" }}>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            variant="contained"
-            color="error"
-            sx={{ borderRadius: "10px" }}
-            onClick={() => navigate("/new-post")}
-          >
-            Nueva Publicación
-          </Button>
-        </Box>
         <Box
           sx={{
             height: "160px",
@@ -128,7 +115,7 @@ const Propertylist = ({ post }) => {
                 }}
               >
                 <span>Visualizaciones</span>
-                <Box sx={{ marginTop: "3px", fontSize: "25px" }}>45</Box>
+                <Box sx={{ fontSize: "25px" }}>45</Box>
               </Box>
               <Box
                 sx={{
