@@ -5,6 +5,7 @@ import { Box, FormControl, MenuItem, Select } from '@mui/material';
 import { getPosts } from '../api/posts';
 import Propertylist from './propertylist';
 
+
 const SearchPlace = () => {
   const [posts, setPosts] = useState(null);
 
@@ -42,6 +43,7 @@ const SearchPlace = () => {
           flexDirection: 'row',
           marginTop: '60px',
           alignItems: 'center',
+          width: '90%',
         }}
       >
         <TextField
@@ -60,10 +62,30 @@ const SearchPlace = () => {
           onChange={(event) => setPropertyType(event.target.value)}
         >
           <MenuItem value="all">Todos</MenuItem>
-          <MenuItem value="department">Departamento</MenuItem>
-          <MenuItem value="lote">Lote</MenuItem>
+          <MenuItem value="buildins">Edificios</MenuItem>
+          <MenuItem value="loteos">Loteos</MenuItem>
         </Select>
-        <span style={{ marginLeft: 'auto' }}> {posts.length} propiedad{posts.length > 1 ? 'es' : ''} encontrada{posts.length > 1 ? 's' : ''} </span>
+        <Select
+          select
+          sx={{ width: '200px', marginLeft: '1%', borderRadius: '10px' }}
+          color="error"
+          disabled
+          value={propertyType}
+          onChange={(event) => setPropertyType(event.target.value)}
+        >
+          <MenuItem value="Charlotte-Belgrano">Charlotte Belgrano</MenuItem>
+          <MenuItem value="Velvet">Velvet</MenuItem>
+          <MenuItem value="Marwa">Marwa</MenuItem>
+          <MenuItem value="WindHouse">WindHouse</MenuItem>
+          <MenuItem value="Kona-21º">Kona 21º</MenuItem>
+          <MenuItem value="Velas">Velas</MenuItem>
+        </Select>
+
+        <span style={{ marginLeft: 'auto' }}>
+          {' '}
+          {posts.length} propiedad{posts.length > 1 ? 'es' : ''} encontrada
+          {posts.length > 1 ? 's' : ''}{' '}
+        </span>
       </FormControl>
       {posts.map((p) => (
         <Propertylist post={p} />

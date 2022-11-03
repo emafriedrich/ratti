@@ -113,12 +113,13 @@ const Propertylist = ({ post }) => {
                 flexDirection: "row",
                 width: "100%",
                 height: "120px",
+                justifyContent:'center'
               }}
             >
               <Box
                 sx={{
                   height: "90px",
-                  width: "40%",
+                  width: "30%",
                   border: "1px solid #676161",
                   marginLeft: "40px",
                   borderRadius: "15px",
@@ -132,7 +133,7 @@ const Propertylist = ({ post }) => {
               <Box
                 sx={{
                   height: "90px",
-                  width: "40%",
+                  width: "30%",
                   border: "1px solid #676161",
                   marginLeft: "40px",
                   borderRadius: "15px",
@@ -164,18 +165,7 @@ const Propertylist = ({ post }) => {
                   lineHeight: "45px",
                 }}
               >
-                <span
-                  style={{
-                    fontSize: "12px",
-                    color: "#8A8181",
-                    marginRight: "15px",
-                  }}
-                >
-                  ID
-                </span>
-                <span style={{ fontWeight: "500", fontSize: "15px" }}>
-                  456451
-                </span>
+                
               </Box>
 
               <Box
@@ -189,18 +179,7 @@ const Propertylist = ({ post }) => {
                   lineHeight: "20px",
                 }}
               >
-                <span
-                  style={{
-                    fontSize: "15px",
-                    color: "#8A8181",
-                    marginRight: "20px",
-                  }}
-                >
-                  Creado el
-                </span>
-                <span style={{ fontWeight: "500", fontSize: "15px" }}>
-                  14/09/2022
-                </span>
+                
               </Box>
               <Box
                 sx={{
@@ -216,7 +195,7 @@ const Propertylist = ({ post }) => {
                 <Button
                   variant="contained"
                   color="error"
-                  sx={{ borderRadius: "10px" , marginBottom:'30px', marginRight:'5px' ,height:'36px'}}
+                  sx={{ borderRadius: "10px" , marginBottom:'30px', marginLeft:'5px' ,height:'36px'}}
                   onClick={() => navigate(`/post/${post.id}`)}
                 >
                   Ver Publicación

@@ -1,8 +1,4 @@
-import {
-  Button,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Button, Paper, Typography } from '@mui/material';
 
 import { TextareaAutosize } from '@mui/material';
 import React, { useEffect } from 'react';
@@ -29,9 +25,13 @@ import { useParams } from 'react-router-dom';
 import { getPost } from '../api/posts';
 import FinancingModal from './financing-modal';
 
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
+
 const CostumerPropertyOffer = () => {
   const [selectedPost, setSelectedPost] = React.useState(null);
   const { id } = useParams();
+  const [openPic, setOpenPic] = React.useState(false);
 
   useEffect(() => {
     getPost(id).then((post) => {
@@ -67,11 +67,16 @@ const CostumerPropertyOffer = () => {
                 <img className="img-four" src={Img4} alt="pics"></img>
               </div>
               <div className="box-image_five">
-                <img className="img-five" src={Img5} alt="pics"></img>
+                <img className="img-five" src={Img5} onClick={() => setOpenPic(true)} alt="pics"></img>
               </div>
             </div>
           </div>
         </div>
+        <Lightbox
+          open={openPic}
+          close={() => setOpenPic(false)}
+          slides={[{ src: Img1},{ src: Img2},{ src: Img3},{ src: Img4},{ src: Img5 }]}
+        />
         <div
           className="box-data_prop"
           style={{
