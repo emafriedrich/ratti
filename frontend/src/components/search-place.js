@@ -101,7 +101,7 @@ const SearchPlace = () => {
           {posts.length > 1 ? 's' : ''}{' '}
         </span>
       </FormControl>
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end',width:'90%', marginTop:'30px' }}>
         <Button
           variant="contained"
           color="error"

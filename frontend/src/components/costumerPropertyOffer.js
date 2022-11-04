@@ -1,4 +1,4 @@
-import { Button, Paper, Typography } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 
 import { TextareaAutosize } from '@mui/material';
 import React, { useEffect, useState } from 'react';
@@ -20,13 +20,15 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChairIcon from '@mui/icons-material/Chair';
 import { TextField } from '@mui/material';
-
+import VideoCameraBackOutlinedIcon from '@mui/icons-material/VideoCameraBackOutlined';
+import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import { useParams } from 'react-router-dom';
 import { getPost } from '../api/posts';
 import FinancingModal from './financing-modal';
-
+import WallpaperIcon from '@mui/icons-material/Wallpaper';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
+import { borderColor, width } from '@mui/system';
 
 const CostumerPropertyOffer = () => {
   const [selectedPost, setSelectedPost] = React.useState(null);
@@ -49,25 +51,88 @@ const CostumerPropertyOffer = () => {
       <div className="container">
         <div className="box-img">
           <div className="col-first">
-            <div className="box-image_first">
-              <img className="img-first" src={Img1} alt="pics" onClick={() => setShowImageIndex(0)}></img>
+            <div
+              className="box-image_first"
+              style={{
+                backgroundImage: `url(${Img1})`,
+                width: '99%',
+                borderRadius: '20px 0 0 20px',
+                minHeight: '100%',
+              }}
+              onClick={() => setShowImageIndex(0)}
+            >
+              <div
+                style={{
+                  width: '320px',
+                  height: '50px',
+                  backgroundColor: '#ffffff',
+                  borderRadius: '12px',
+                  marginLeft:'20px'
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    padding: '10px',
+                    fontSize: '20',
+                    marginTop:'122%',
+                    marginLeft:'22px',
+                    boxShadow:'20px'
+                    
+                  }}
+                >
+                  <div style={{display:'flex',cursor:'pointer'}}>
+                    <VideoCameraBackOutlinedIcon></VideoCameraBackOutlinedIcon>
+                    <div style={{marginTop:'5px', marginLeft:'4px'}}><b>Videos</b></div>
+                  </div>
+                  <div style={{marginLeft:'15px',marginRight:'15px',display:'flex',cursor:'pointer'}}>
+                    <CameraAltOutlinedIcon></CameraAltOutlinedIcon>
+                    <div style={{marginTop:'5px', marginLeft:'4px'}}><b>Fotos</b></div>
+                  </div>
+                  <div style={{display:'flex',cursor:'pointer'}}>
+                    <WallpaperIcon></WallpaperIcon>
+                    <div style={{marginTop:'5px', marginLeft:'4px'}}><b>Planos</b></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-second">
             <div className="row-first">
               <div className="box-image_second">
-                <img className="img-second" src={Img2} alt="pics" onClick={() => setShowImageIndex(1)}></img>
+                <img
+                  className="img-second"
+                  src={Img2}
+                  alt="pics"
+                  onClick={() => setShowImageIndex(1)}
+                ></img>
               </div>
               <div className="box-image_third">
-                <img className="img-third" src={Img3} alt="pics" onClick={() => setShowImageIndex(2)}></img>
+                <img
+                  className="img-third"
+                  src={Img3}
+                  alt="pics"
+                  onClick={() => setShowImageIndex(2)}
+                ></img>
               </div>
             </div>
             <div className="row-first">
               <div className="box-image_four">
-                <img className="img-four" src={Img4} alt="pics" onClick={() => setShowImageIndex(3)}></img>
+                <img
+                  className="img-four"
+                  src={Img4}
+                  alt="pics"
+                  onClick={() => setShowImageIndex(3)}
+                ></img>
               </div>
               <div className="box-image_five">
-                <img className="img-five" src={Img5} alt="pics" onClick={() => setShowImageIndex(4)}></img>
+                <img
+                  className="img-five"
+                  src={Img5}
+                  alt="pics"
+                  onClick={() => setShowImageIndex(4)}
+                ></img>
               </div>
             </div>
           </div>
@@ -76,7 +141,13 @@ const CostumerPropertyOffer = () => {
           open={showImageIndex > -1}
           close={() => setShowImageIndex(-1)}
           index={showImageIndex}
-          slides={[{ src: Img1},{ src: Img2},{ src: Img3},{ src: Img4},{ src: Img5 }]}
+          slides={[
+            { src: Img1 },
+            { src: Img2 },
+            { src: Img3 },
+            { src: Img4 },
+            { src: Img5 },
+          ]}
         />
         <div
           className="box-data_prop"
