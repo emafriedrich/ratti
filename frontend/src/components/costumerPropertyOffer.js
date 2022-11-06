@@ -34,12 +34,16 @@ const CostumerPropertyOffer = () => {
   const [selectedPost, setSelectedPost] = React.useState(null);
   const { id } = useParams();
   const [showImageIndex, setShowImageIndex] = useState(-1);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedPlanos, setSelectePlanos] = useState(null);
 
   useEffect(() => {
     getPost(id).then((post) => {
       setSelectedPost(post);
     });
   }, []);
+
 
   const [showModal, setShowModal] = useState(false);
   const handleModalOpen = () => setShowModal(true);
@@ -60,40 +64,59 @@ const CostumerPropertyOffer = () => {
                 minHeight: '100%',
               }}
               onClick={() => setShowImageIndex(0)}
+            ></div>
+            <div
+              style={{
+                position: 'absolute',
+                width: '360px',
+                height: '50px',
+                backgroundColor: '#ffffff',
+                borderRadius: '12px',
+                marginLeft: '20px',
+                top: '57%',
+                boxShadow: 'rgb(124 152 167 / 20%) 3px 3px 6px',
+              }}
             >
               <div
                 style={{
-                  width: '320px',
-                  height: '50px',
-                  backgroundColor: '#ffffff',
-                  borderRadius: '12px',
-                  marginLeft:'20px'
+                  position: 'absolute',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  padding: '10px',
+                  fontSize: '20',
+
+                  marginLeft: '22px',
+                  boxShadow: '20px',
                 }}
               >
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    padding: '10px',
-                    fontSize: '20',
-                    marginTop:'122%',
-                    marginLeft:'22px',
-                    boxShadow:'20px'
-                    
-                  }}
-                >
-                  <div style={{display:'flex',cursor:'pointer'}}>
-                    <VideoCameraBackOutlinedIcon></VideoCameraBackOutlinedIcon>
-                    <div style={{marginTop:'5px', marginLeft:'4px'}}><b>Videos</b></div>
-                  </div>
-                  <div style={{marginLeft:'15px',marginRight:'15px',display:'flex',cursor:'pointer'}}>
-                    <CameraAltOutlinedIcon></CameraAltOutlinedIcon>
-                    <div style={{marginTop:'5px', marginLeft:'4px'}}><b>Fotos</b></div>
-                  </div>
-                  <div style={{display:'flex',cursor:'pointer'}}>
-                    <WallpaperIcon></WallpaperIcon>
-                    <div style={{marginTop:'5px', marginLeft:'4px'}}><b>Planos</b></div>
-                  </div>
+                <div style={{ display: 'flex', cursor: 'pointer' }}>
+                  <Button
+                    style={{ backgroundColor: '#FFFFFF', color: '#000000' }}
+                  >
+                    <VideoCameraBackOutlinedIcon
+                      sx={{ marginRight: '4px' }}
+                    ></VideoCameraBackOutlinedIcon>
+                    <b>Videos</b>
+                  </Button>
+                </div>
+                <div style={{ display: 'flex', cursor: 'pointer' }}>
+                  <Button
+                    style={{ backgroundColor: '#FFFFFF', color: '#000000' }}
+                  >
+                    <CameraAltOutlinedIcon
+                      sx={{ marginRight: '4px' }}
+                    ></CameraAltOutlinedIcon>
+                    <b>Fotos</b>
+                  </Button>
+                </div>
+                <div style={{ display: 'flex', cursor: 'pointer' }}>
+                  <b></b>
+                  <Button
+                    style={{ backgroundColor: '#FFFFFF', color: '#000000' }}
+                  >
+                    <WallpaperIcon sx={{ marginRight: '4px' }}></WallpaperIcon>
+                    <b>Planos</b>
+                  </Button>
                 </div>
               </div>
             </div>
